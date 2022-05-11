@@ -1,6 +1,4 @@
 openapi: 3.0.0
-x-stoplight:
-  id: h7zex51g91mb8
 info:
   title: Kyber Swap Aggregator  APIs
   version: '1.0'
@@ -15,11 +13,11 @@ paths:
         in: path
         required: true
     get:
-      summary: Get User Info by User ID
+      summary: Get Swap Info with Encoded Data
       tags: []
       responses:
         '200':
-          description: User Found
+          description: Swap Found
           content:
             application/json:
               schema:
@@ -29,8 +27,6 @@ paths:
               schema:
                 type: object
                 properties: {}
-        '404':
-          description: User Not Found
       operationId: get-route-encode
       description: Retrieve the information about a Swap between 2 tokens with encoded data to submit to KyberSwap router contract
       parameters:
