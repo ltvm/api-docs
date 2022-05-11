@@ -64,7 +64,7 @@ paths:
         - schema:
             type: string
             enum:
-              - currency_out
+              - currency_in
               - currency_out
           in: query
           name: chargeFeeBy
@@ -102,7 +102,7 @@ components:
     Swap:
       type: object
       x-examples:
-        example-1:
+        Example:
           inputAmount: '1000000000000000000'
           outputAmount: '1214880136112732694'
           totalGas: 245000
@@ -176,30 +176,32 @@ components:
           items:
             type: array
             items:
-              type: object
-              properties:
-                pool:
-                  type: string
-                tokenIn:
-                  type: string
-                tokenOut:
-                  type: string
-                swapAmount:
-                  type: string
-                amountOut:
-                  type: string
-                limitReturnAmount:
-                  type: string
-                maxPrice:
-                  type: string
-                exchange:
-                  type: string
-                poolLength:
-                  type: integer
-                poolType:
-                  type: string
+              $ref: '#/components/schemas/SwapSequence'
         encodedSwapData:
           type: string
           description: The encoded data to be sent to our router address
         routerAddress:
+          type: string
+    SwapSequence:
+      type: object
+      properties:
+        pool:
+          type: string
+        tokenIn:
+          type: string
+        tokenOut:
+          type: string
+        swapAmount:
+          type: string
+        amountOut:
+          type: string
+        limitReturnAmount:
+          type: string
+        maxPrice:
+          type: string
+        exchange:
+          type: string
+        poolLength:
+          type: integer
+        poolType:
           type: string
