@@ -3,7 +3,7 @@ info:
   title: Kyber Swap Aggregator  APIs
   version: '1.0'
 servers:
-  - url: 'http://localhost:3000'
+  - url: 'http://kyberengineering.io'
 paths:
   '/{chain}/route/encode':
     parameters:
@@ -97,6 +97,18 @@ paths:
           in: query
           name: clientData
           description: Json string present your client
+  '/{chain}/route':
+    parameters:
+      - schema:
+          type: string
+        name: chain
+        in: path
+        required: true
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses: {}
+      operationId: get-chain-route
 components:
   schemas:
     Swap:
