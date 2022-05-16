@@ -97,18 +97,6 @@ paths:
           in: query
           name: clientData
           description: Json string present your client
-  '/{chain}/route':
-    parameters:
-      - schema:
-          type: string
-        name: chain
-        in: path
-        required: true
-    get:
-      summary: Your GET endpoint
-      tags: []
-      responses: {}
-      operationId: get-chain-route
 components:
   schemas:
     Swap:
