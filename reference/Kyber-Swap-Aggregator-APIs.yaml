@@ -3,7 +3,7 @@ info:
   title: Kyber Swap Aggregator  APIs
   version: '1.0'
 servers:
-  - url: 'https://aggregator-api.devkyberengineering.io'
+  - url: 'https://aggregator-api.kyberswap.com'
 paths:
   '/{chain}/route/encode':
     parameters:
