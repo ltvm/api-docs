@@ -92,12 +92,16 @@ paths:
           in: query
           name: tokenIn
           required: true
-          description: Address of the input token
+          description: |
+            Address of the input token \
+            `0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE` in case of native token
         - schema:
             type: string
           in: query
           name: tokenOut
-          description: Address of the output token
+          description: |
+            Address of the output token \
+            `0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE` in case of native token
           required: true
         - schema:
             type: string
@@ -117,14 +121,15 @@ paths:
             type: string
           in: query
           name: slippageTolerance
-          description: 'If allow slippage, default value is 50/10000 ~ 0.5%'
+          description: |
+            If allow slippage, default value is 50/10000 ~ 0.5% \
+            The value ranges in [0, 10000], 10 means 0.1%
         - schema:
             type: boolean
           in: query
           name: isInBps
           description: |
-            if true, the amount in is calculated: (amountIn / 100000 - feeAmount) * 100000
-            if false: amountIn + feeAmount
+            if true, fee is taken in BPS
         - schema:
             type: string
             enum:
@@ -133,7 +138,9 @@ paths:
           in: query
           name: chargeFeeBy
           allowEmptyValue: true
-          description: 'if fee can be charged, default is empyt => no fee charge.'
+          description: |
+            Indicates where fee is charged by input token `currency_in` or output token `currency_out` \
+            Default is empty => no fee charge
         - schema:
             type: string
           in: query
@@ -143,7 +150,10 @@ paths:
             type: string
           in: query
           name: feeAmount
-          description: Amount of Fee to be collected
+          description: | 
+            Amount of Fee to be collected \
+            if isInBps = true, feeAmount is the percentage of fee that we will take with base unit = 10000, i.e feeAmount = 10 means taking 0.1% \
+            if isInBps = false, feeAmount is the amount of token that we will take as fee, i.e feeAmount = 10 means taking 10 token weis as fee
         - schema:
             type: string
             example: '1551036863'
@@ -169,20 +179,28 @@ components:
       properties:
         inputAmount:
           type: string
+          description: The input amount of `tokenIn`, in wei
         outputAmount:
           type: string
+          description: The input amount of `tokenOut`, in wei
         totalGas:
           type: integer
+          description: Estimated gas fee
         gasPriceGwei:
           type: string
+          description: Current gas price in Gwei
         gasUsd:
           type: number
+          description: Current gas price in USD
         amountInUsd:
           type: number
+          description: Estimate of input value, in USD
         amountOutUsd:
           type: number
+          description: Estimate of out value, in USD
         receivedUsd:
           type: number
+          description: Estimate of final received value, in USD
         swaps:
           type: array
           description: 'Swap path, a 2-dimen array describe how swap is executed'
@@ -200,21 +218,32 @@ components:
       properties:
         pool:
           type: string
+          description: The address of the pool used in our executor
         tokenIn:
           type: string
+          description: The input token for this pool
         tokenOut:
           type: string
+          description: The output token for this pool
         swapAmount:
           type: string
+          description: The input amount swap through this pool
         amountOut:
           type: string
+          description: The output amount after swap through this pool
         limitReturnAmount:
           type: string
+          description: The limit return amount
         maxPrice:
           type: string
+          description: The max price
         exchange:
           type: string
+          description: The original exchange of this pool
         poolLength:
           type: integer
+          description: The number of token in this pool
         poolType:
           type: string
+          description: |
+            The type of this pool (internal definition by our aggregator)
