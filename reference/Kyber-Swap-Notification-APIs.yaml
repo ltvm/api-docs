@@ -1,0 +1,493 @@
+openapi: 3.0.0
+info:
+  title: Kyber Swap Notification APIs
+  description: |
+    Kyber Swap Notification APIs
+  license:
+    name: Apache 2.0
+    url: 'https://www.apache.org/licenses/LICENSE-2.0.html'
+  version: '1.0'
+  contact:
+    name: Viet-Anh
+    email: alvin.nguyen@kyber.network
+    url: 'https://kyberswap.com'
+servers:
+  - url: 'https://notification.kyberengineering.io'
+paths:
+  /api/v1/messages/send:
+    parameters: [ ]
+    post:
+      summary: Send messages
+      operationId: post-api-v1-messages-send
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                  message:
+                    type: string
+                  data:
+                    type: object
+                    properties:
+                      metaMessageIds:
+                        type: array
+                        items:
+                          type: integer
+                    required:
+                      - metaMessageIds
+                required:
+                  - code
+                  - message
+              examples:
+                example-1:
+                  value:
+                    code: '0'
+                    message: succeeded
+                    data:
+                      metaMessageIds:
+                        - 1
+        '400':
+          description: |
+            Bad Request
+            - Missing required fields
+            - receiverType is not in the accepted values
+            - templateId or timeToSend has an invalid format
+            - receiverType = TOPIC, receivers (topicIds) has an invalid format
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                example-1:
+                  value:
+                    code: '4000'
+                    message: Missing required fields
+                    errorEntities:
+                      - receiverType
+                example-2:
+                  value:
+                    code: '4001'
+                    message: Input is not in the accepted values
+                    errorEntities:
+                      - type
+                example-3:
+                  value:
+                    code: '4003'
+                    message: Input has an invalid format
+                    errorEntities:
+                      - templateId
+        '401':
+          description: |-
+            Unauthorized
+            - X-Api-Key is invalid
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                example-1:
+                  value:
+                    code: '4010'
+                    message: Unauthenticated
+                    errorEntities:
+                      - x-api-key
+        '404':
+          description: |-
+            Not Found
+            - Not found templateId
+            - Not found params
+            - Not found topicId (in case receiverType = TOPIC)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                example-1:
+                  value:
+                    code: '4040'
+                    message: Not found
+                    errorEntities:
+                      - templateId
+        '409':
+          description: |-
+            Conflict
+            - Duplicate receivers
+            - Duplicate param key
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                example-1:
+                  value:
+                    code: '4090'
+                    message: Duplicate data
+                    errorEntities:
+                      - receivers
+      description: Send messages
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                templateId:
+                  type: integer
+                  description: 'To send a message, you have to create a template first. If you already have one, just use it. Otherwise please contact dev team to create one.'
+                params:
+                  type: array
+                  description: |-
+                    Required if your template requires parameters.
+                    Parameters to fill to template
+                  items:
+                    type: object
+                    properties:
+                      key:
+                        type: string
+                      value:
+                        type: string
+                receiverType:
+                  type: string
+                  enum:
+                    - TOPIC
+                  description: To decide to who will be received the message
+                receivers:
+                  type: array
+                  description: |-
+                    The value of this field is depend on receiver_type:
+                    - TOPIC => list of topicId
+                  items:
+                    type: string
+                timeToSend:
+                  type: integer
+                  description: |-
+                    Timestamp in seconds.
+                    The time to send message. If no value is provided (or less than the current timestamp), the message will be sent as soon as possible.
+              required:
+                - templateId
+                - receiverType
+                - receivers
+            examples:
+              example-1:
+                value:
+                  templateId: 1
+                  params:
+                    - key: content
+                      value: This is content
+                  receiverType: TOPIC
+                  receivers:
+                    - '1'
+                  timeToSend: 0
+          application/gzip:
+            schema:
+              type: object
+              properties: { }
+        description: ''
+      tags:
+        - Messages
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: X-API-Key
+          description: API Key to prevent spam
+          required: true
+  '/api/v1/topics/{topicId}/subscribe':
+    post:
+      summary: Subscribe to topic
+      operationId: post-topics-subscribe
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                  message:
+                    type: string
+                  data:
+                    type: object
+                    properties:
+                      successCount:
+                        type: integer
+                      failureCount:
+                        type: integer
+                    required:
+                      - successCount
+                      - failureCount
+                required:
+                  - code
+                  - message
+              examples:
+                example-1:
+                  value:
+                    code: '0'
+                    message: Succeeded
+                    data:
+                      successCount: 1
+                      failureCount: 0
+        '400':
+          description: |-
+            Bad request
+            - Missing required fields
+            - User's type is not in the accepted values
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                example-1:
+                  value:
+                    code: '4000'
+                    message: Missing required fields
+                    errorEntities:
+                      - type
+                example-2:
+                  value:
+                    code: '4001'
+                    message: Input is not in the accepted values
+                    errorEntities:
+                      - type
+        '404':
+          description: |-
+            Not found
+            - topicId is not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                example-1:
+                  value:
+                    code: '4040'
+                    message: Not found
+                    errorEntities:
+                      - topicId
+        '409':
+          description: |-
+            Conflict
+
+            - Duplicate receiving address
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                example-1:
+                  value:
+                    code: '4090'
+                    message: Duplicate data
+                    errorEntities:
+                      - receivingAddress
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                users:
+                  type: array
+                  description: List of users want to subscribe to the topic
+                  items:
+                    type: object
+                    properties:
+                      type:
+                        type: string
+                        enum:
+                          - FCM_TOKEN
+                          - APNS_TOKEN
+                        description: Type of user
+                      receivingAddress:
+                        type: string
+                        description: |-
+                          The value of this field depend on the type:
+                          - FCM_TOKEN: the FCM device token
+                          - APNS_TOKEN: the APNS device token
+                      walletId:
+                        type: string
+                        description: WalletID of user
+                    required:
+                      - type
+                      - receivingAddress
+              required:
+                - users
+            examples:
+              example-1:
+                value:
+                  users:
+                    - type: FCM_TOKEN
+                      receivingAddress: '123456789'
+                      walletId: abcdef
+        description: ''
+      description: Subscribe to the topic
+      tags:
+        - Topics
+    parameters:
+      - schema:
+          type: string
+        name: topicId
+        in: path
+        required: true
+        description: The ID of topic in Notification System
+  '/api/v1/topics/{topicId}/unsubscribe':
+    parameters:
+      - schema:
+          type: integer
+        name: topicId
+        in: path
+        required: true
+        description: The ID of topic in Notification System
+    delete:
+      summary: Unsubscribe topic
+      operationId: post-topics-topicId-unsubscribe
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                  message:
+                    type: string
+                  data:
+                    type: object
+                    properties:
+                      successCount:
+                        type: integer
+                      failureCount:
+                        type: integer
+                    required:
+                      - successCount
+                      - failureCount
+                required:
+                  - code
+                  - message
+              examples:
+                example-1:
+                  value:
+                    code: '0'
+                    message: Succeeded
+                    data:
+                      successCount: 1
+                      failureCount: 0
+        '400':
+          description: |-
+            Bad Request
+            - Missing required fields
+            - User's type is not in the accepted values
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                example-1:
+                  value:
+                    code: '4000'
+                    message: Missing required fields
+                    errorEntities:
+                      - type
+                example-2:
+                  value:
+                    code: '4001'
+                    message: Input is not in the accepted values
+                    errorEntities:
+                      - type
+        '404':
+          description: |-
+            Not Found
+            - Not found topicId
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                example-1:
+                  value:
+                    code: '4040'
+                    message: Not found
+                    errorEntities:
+                      - topicId
+        '409':
+          description: |-
+            Conflict
+             - Duplicate receiving address
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                example-1:
+                  value:
+                    code: '4090'
+                    message: Duplicate data
+                    errorEntities:
+                      - receivingAddress
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                users:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      type:
+                        type: string
+                        description: Type of user
+                        enum:
+                          - FCM_TOKEN
+                          - APNS_TOKEN
+                      receivingAddress:
+                        type: string
+                        description: |-
+                          The value of this field depend on the type:
+                          - FCM_TOKEN: the FCM device token
+                          - APNS_TOKEN: the APNS device token
+                    required:
+                      - type
+                      - receivingAddress
+              required:
+                - users
+            examples:
+              example-1:
+                value:
+                  users:
+                    - type: FCM_TOKEN
+                      receivingAddress: string
+      description: Unsubscribe topic
+      tags:
+        - Topics
+components:
+  schemas:
+    ErrorResponse:
+      title: ErrorResponse
+      type: object
+      description: ''
+      properties:
+        code:
+          type: string
+          description: Error code
+        message:
+          type: string
+          description: Human readable message
+        errorEntities:
+          type: array
+          description: Error entities contains all error fields
+          items:
+            type: string
+      required:
+        - code
+        - message
