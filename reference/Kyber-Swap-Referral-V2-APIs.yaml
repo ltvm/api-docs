@@ -1,0 +1,585 @@
+openapi: 3.0.0
+info:
+  title: Kyber Swap Referral V2 APIs
+  description: |
+    Kyber Swap Referral V2 APIs
+  license:
+    name: Apache 2.0
+    url: 'https://www.apache.org/licenses/LICENSE-2.0.html'
+  version: '1.0'
+  contact:
+    name: Viet-Anh
+    email: alvin.nguyen@kyber.network
+    url: 'https://kyberswap.com'
+servers:
+  - url: 'https://referral.kyberengineering.io'
+paths:
+  '/api/v1/referrers/{wallet}':
+    parameters:
+      - schema:
+          type: string
+          maxLength: 255
+        name: wallet
+        in: path
+        required: true
+        description: The wallet address of the referrer
+    get:
+      summary: Get Referrer Info
+      operationId: get-referrers
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    description: Always is 0
+                  message:
+                    type: string
+                    description: Always is "Succeeded"
+                  data:
+                    type: object
+                    required:
+                      - referrer
+                    properties:
+                      referrer:
+                        type: object
+                        required:
+                          - referralCode
+                          - totalEarning
+                          - numReferrals
+                          - claimableReward
+                        description: Referrer information
+                        properties:
+                          referralCode:
+                            type: string
+                            description: The referral code
+                          totalEarning:
+                            type: number
+                          numReferrals:
+                            type: integer
+                            description: Number of successful referrals
+                          claimableReward:
+                            type: number
+                            description: TotalEarning - ClaimedAmount
+                required:
+                  - code
+                  - message
+                  - data
+              examples:
+                example-1:
+                  value:
+                    code: 0
+                    message: Succeeded
+                    data:
+                      referrer:
+                        referralCode: '12345678'
+                        totalEarning: 20.2
+                        numReferrals: 2
+                        claimableReward: 10.2
+        '400':
+          description: |-
+            Bad Request
+            - wallet exceeds max length
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                example-1:
+                  value:
+                    code: 4002
+                    message: 'Input is out of range: wallet'
+                    errorEntities:
+                      - wallet
+                    details: []
+        '404':
+          description: |-
+            Not Found
+            - Not found referrer
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                example-1:
+                  value:
+                    code: 4040
+                    message: 'Not found: referrer'
+                    errorEntities:
+                      - referrer
+                    details: []
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                example-1:
+                  value:
+                    code: 5000
+                    message: Internal server error
+                    errorEntities: []
+                    details: []
+  /api/v1/referrers:
+    post:
+      summary: Create Referrer
+      operationId: post-referrers
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    description: Always is 0
+                  message:
+                    type: string
+                    description: Always is "Succeeded"
+                  data:
+                    type: object
+                    required:
+                      - referrer
+                    properties:
+                      referrer:
+                        type: object
+                        required:
+                          - wallet
+                          - referralCode
+                        properties:
+                          wallet:
+                            type: string
+                          referralCode:
+                            type: string
+                required:
+                  - code
+                  - message
+                  - data
+              examples:
+                example-1:
+                  value:
+                    code: 0
+                    message: Succeeded
+                    data:
+                      referrer:
+                        wallet: '12345678'
+                        referralCode: a123f43d56
+        '400':
+          description: |-
+            Bad Request
+            - Missing wallet in request body
+            - Wallet exceeds max length
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                example-1:
+                  value:
+                    code: 4000
+                    message: 'Missing required fields: wallet'
+                    errorEntities:
+                      - wallet
+                    details: []
+                example-2:
+                  value:
+                    code: 4002
+                    message: 'Input is out of range: wallet'
+                    errorEntities:
+                      - wallet
+                    details: []
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                example-1:
+                  value:
+                    code: 5000
+                    message: Internal server error
+                    errorEntities: []
+                    details: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                wallet:
+                  type: string
+                  description: The wallet address
+                  maxLength: 255
+              required:
+                - wallet
+            examples:
+              example-1:
+                value:
+                  wallet: '12345678'
+          application/xml:
+            schema:
+              type: object
+              properties: {}
+          multipart/form-data:
+            schema:
+              type: object
+              properties: {}
+    parameters: []
+  /api/v1/referrers/leaderboard:
+    get:
+      summary: Get Referrer Leaderboard
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    description: Always is 0
+                  message:
+                    type: string
+                    description: Always is "Succeeded"
+                  data:
+                    type: object
+                    required:
+                      - referrers
+                      - pagination
+                    properties:
+                      referrers:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            wallet:
+                              type: string
+                            numReferrals:
+                              type: integer
+                            totalEarning:
+                              type: number
+                          required:
+                            - wallet
+                            - numReferrals
+                            - totalEarning
+                      pagination:
+                        type: object
+                        required:
+                          - totalItems
+                        properties:
+                          totalItems:
+                            type: integer
+                required:
+                  - code
+                  - message
+                  - data
+              examples:
+                example-1:
+                  value:
+                    code: 0
+                    message: Succeeded
+                    data:
+                      referrers:
+                        - wallet: '12345678'
+                          numReferrals: 2
+                          totalEarning: 20.1
+                      pagination:
+                        totalItems: 1
+        '400':
+          description: |-
+            Bad Request
+            - wallet exceeds max length
+            - page is less than min value
+            - page is invalid format
+            - pageSize is less than min value/greater than max value
+            - pageSize is invalid format
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                example-1:
+                  value:
+                    code: 4002
+                    message: 'Input is out of range: wallet'
+                    errorEntities:
+                      - wallet
+                    details: []
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                example-1:
+                  value:
+                    code: 5000
+                    message: Internal Server Error
+                    errorEntities: []
+                    details: []
+      operationId: get-referrers-leaderboard
+      parameters:
+        - schema:
+            type: string
+            maxLength: 255
+          in: query
+          name: wallet
+          description: The wallet address
+        - schema:
+            type: integer
+            default: 10
+            minimum: 1
+            maximum: 100
+          in: query
+          name: pageSize
+        - schema:
+            type: integer
+            default: 1
+            minimum: 1
+          in: query
+          name: page
+    parameters: []
+  '/api/v1/referrees/{wallet}':
+    parameters:
+      - schema:
+          type: string
+          maxLength: 255
+        name: wallet
+        in: path
+        required: true
+        description: The wallet address of the referree
+    get:
+      summary: Get Referree Information
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    description: Always is 0
+                  message:
+                    type: string
+                    description: Always is "Succeeded"
+                  data:
+                    type: object
+                    properties:
+                      referree:
+                        type: object
+                        properties:
+                          referrerWallet:
+                            type: string
+                            description: The wallet address of referrer
+                          wallet:
+                            type: string
+                            description: The wallet address of referree
+                          tradeVolume:
+                            type: number
+                          isEligible:
+                            type: boolean
+                          isUnlocked:
+                            type: boolean
+                          isClaimed:
+                            type: boolean
+                        required:
+                          - wallet
+                          - tradeVolume
+                          - isEligible
+                          - isUnlocked
+                          - isClaimed
+                required:
+                  - code
+                  - message
+              examples:
+                example-1:
+                  value:
+                    code: 0
+                    message: Succeeded
+                    data:
+                      referree:
+                        referrerWallet: '12345'
+                        wallet: '54321'
+                        tradeVolume: 0
+                        isEligible: false
+                        isUnlocked: false
+                        isClaimed: false
+        '400':
+          description: |-
+            Bad Request
+            - wallet exceeds max length
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                example-1:
+                  value:
+                    code: 4002
+                    message: 'Input is out of range: wallet'
+                    errorEntities:
+                      - wallet
+                    details: []
+        '404':
+          description: |-
+            Not Found
+            - Not found referree
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                example-1:
+                  value:
+                    code: 4040
+                    message: 'Not found: referree'
+                    errorEntities:
+                      - referree
+                    details: []
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                example-1:
+                  value:
+                    code: 5000
+                    message: Internal Server Error
+                    errorEntities: []
+                    details: []
+      operationId: get-api-v1-referrees-wallet
+  /api/v1/referrees/unlock:
+    patch:
+      summary: Unlock reward for referree
+      operationId: patch-api-v1-referrees-unlock
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    description: Always is 0
+                  message:
+                    type: string
+                    description: Always is "Succeeded"
+                  data:
+                    type: object
+                    nullable: true
+                required:
+                  - code
+                  - message
+              examples:
+                example-1:
+                  value:
+                    code: 0
+                    message: Succeeded
+                    data: null
+        '400':
+          description: |-
+            Bad Request
+            - Missing wallet in request body
+            - wallet exceeds max length
+            - referree is not eligible
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                example-1:
+                  value:
+                    code: 4000
+                    message: 'Missing required fields: wallet'
+                    errorEntities:
+                      - wallet
+                    details: []
+        '404':
+          description: |-
+            Not Found
+            - Not found referree
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                example-1:
+                  value:
+                    code: 4040
+                    message: 'Not found: referree'
+                    errorEntities:
+                      - referree
+                    details:
+                      - null
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                example-1:
+                  value:
+                    code: 5000
+                    message: Internal Server Error
+                    errorEntities: []
+                    details:
+                      - null
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                wallet:
+                  type: string
+                  maxLength: 255
+                  description: The wallet address of the referree
+              required:
+                - wallet
+            examples:
+              example-1:
+                value:
+                  wallet: '12345'
+components:
+  schemas:
+    ErrorResponse:
+      title: ErrorResponse
+      x-stoplight:
+        id: siotr8wdpfdji
+      type: object
+      properties:
+        code:
+          type: integer
+          description: Error code
+        message:
+          type: string
+          description: Human readable message
+        errorEntities:
+          type: array
+          items:
+            type: string
+        details:
+          type: array
+          items: {}
+      required:
+        - code
+        - message
