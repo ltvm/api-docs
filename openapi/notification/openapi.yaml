@@ -1,0 +1,36 @@
+openapi: 3.1.0
+info:
+  title: Kyber Swap Notification APIs
+  description: |
+    Kyber Swap Notification APIs
+  license:
+    name: Apache 2.0
+    url: 'https://www.apache.org/licenses/LICENSE-2.0.html'
+  version: '1.0'
+  contact:
+    name: Viet-Anh
+    email: alvin.nguyen@kyber.network
+    url: 'https://kyberswap.com'
+servers:
+  - url: 'https://notification.kyberengineering.io'
+paths:
+  /api/v1/messages/send:
+    $ref: paths/send_messages.yaml
+  '/api/v1/topics/{topicId}/subscribe':
+    parameters:
+      - name: topicId
+        in: path
+        required: true
+        description: The ID of topic in Notification System
+        schema:
+          type: string
+    $ref: paths/subscribe_topic.yaml
+  '/api/v1/topics/{topicId}/unsubscribe':
+    parameters:
+      - name: topicId
+        in: path
+        required: true
+        description: The ID of topic in Notification System
+        schema:
+          type: integer
+    $ref: paths/unsubscribe_topic.yaml

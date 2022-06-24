@@ -1,0 +1,6 @@
+name: X-API-Key
+description: API Key to prevent spam
+required: true
+in: header
+schema:
+  type: string

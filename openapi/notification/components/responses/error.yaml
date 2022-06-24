@@ -1,0 +1,17 @@
+title: ErrorResponse
+type: object
+properties:
+  code:
+    type: string
+    description: Error code
+  message:
+    type: string
+    description: Human readable message
+  errorEntities:
+    type: array
+    description: Error entities contains all error fields
+    items:
+      type: string
+required:
+  - code
+  - message

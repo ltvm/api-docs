@@ -1,0 +1,207 @@
+post:
+  summary: Send messages
+  description: Send messages
+  tags:
+    - Messages
+  operationId: post-api-v1-messages-send
+  parameters:
+    - $ref: ../components/parameters/x_api_key.yaml
+  requestBody:
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            templateId:
+              type: integer
+              description: 'To send a message, you have to create a template first. If you already have one, just use it. Otherwise please contact dev team to create one.'
+            params:
+              type: array
+              description: |-
+                Required if your template requires parameters.
+                Parameters to fill to template
+              items:
+                type: object
+                properties:
+                  key:
+                    type: string
+                  value:
+                    type: string
+            receiverType:
+              type: string
+              enum:
+                - TOPIC
+              description: To decide to who will be received the message
+            receivers:
+              type: array
+              description: |-
+                The value of this field is depend on receiver_type:
+                - TOPIC => list of topicId
+              items:
+                type: string
+            timeToSend:
+              type: integer
+              description: |-
+                Timestamp in seconds.
+                The time to send message. If no value is provided (or less than the current timestamp), the message will be sent as soon as possible.
+            extraData:
+              type: object
+              description: Extra data used to custom specific message type
+              properties:
+                fcm:
+                  type: object
+                  description: Extra data to custome FCM notification
+                  properties:
+                    webpush:
+                      type: object
+                      description: Extra data used to custom FCM WebPush notification
+                      properties:
+                        notification:
+                          type: object
+                          properties:
+                            icon:
+                              type: string
+                              description: Icon URL that displayed in notification
+                            actions:
+                              type: array
+                              description: List action buttons in notification
+                              items:
+                                type: object
+                                properties:
+                                  action:
+                                    type: string
+                                  title:
+                                    type: string
+          required:
+            - templateId
+            - receiverType
+            - receivers
+        examples:
+          example-1:
+            value:
+              templateId: 1
+              params:
+                - key: content
+                  value: This is content
+              receiverType: TOPIC
+              receivers:
+                - '1'
+              timeToSend: 0
+              extraData:
+                fcm:
+                  webpush:
+                    notification:
+                      icon: 'https://s2.coinmarketcap.com/static/img/coins/200x200/9444.png'
+                      actions:
+                        - action: Discover more
+                          title: Discover more
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              code:
+                type: string
+              message:
+                type: string
+              data:
+                type: object
+                properties:
+                  metaMessageIds:
+                    type: array
+                    items:
+                      type: integer
+                required:
+                  - metaMessageIds
+            required:
+              - code
+              - message
+          examples:
+            example-1:
+              value:
+                code: '0'
+                message: succeeded
+                data:
+                  metaMessageIds:
+                    - 1
+    '400':
+      description: |
+        Bad Request
+        - Missing required fields
+        - receiverType is not in the accepted values
+        - templateId or timeToSend has an invalid format
+        - receiverType = TOPIC, receivers (topicIds) has an invalid format
+      content:
+        application/json:
+          schema:
+            $ref: ../components/responses/error.yaml
+          examples:
+            example-1:
+              value:
+                code: '4000'
+                message: Missing required fields
+                errorEntities:
+                  - receiverType
+            example-2:
+              value:
+                code: '4001'
+                message: Input is not in the accepted values
+                errorEntities:
+                  - type
+            example-3:
+              value:
+                code: '4003'
+                message: Input has an invalid format
+                errorEntities:
+                  - templateId
+    '401':
+      description: |-
+        Unauthorized
+        - X-Api-Key is invalid
+      content:
+        application/json:
+          schema:
+            $ref: ../components/responses/error.yaml
+          examples:
+            example-1:
+              value:
+                code: '4010'
+                message: Unauthenticated
+                errorEntities:
+                  - x-api-key
+    '404':
+      description: |-
+        Not Found
+        - Not found templateId
+        - Not found params
+        - Not found topicId (in case receiverType = TOPIC)
+      content:
+        application/json:
+          schema:
+            $ref: ../components/responses/error.yaml
+          examples:
+            example-1:
+              value:
+                code: '4040'
+                message: Not found
+                errorEntities:
+                  - templateId
+    '409':
+      description: |-
+        Conflict
+        - Duplicate receivers
+        - Duplicate param key
+      content:
+        application/json:
+          schema:
+            $ref: ../components/responses/error.yaml
+          examples:
+            example-1:
+              value:
+                code: '4090'
+                message: Duplicate data
+                errorEntities:
+                  - receivers
