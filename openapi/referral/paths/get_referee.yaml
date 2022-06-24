@@ -1,0 +1,104 @@
+get:
+  summary: Get Referree Information
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                description: Always is 0
+              message:
+                type: string
+                description: Always is "Succeeded"
+              data:
+                type: object
+                properties:
+                  referree:
+                    type: object
+                    properties:
+                      referrerWallet:
+                        type: string
+                        description: The wallet address of referrer
+                      wallet:
+                        type: string
+                        description: The wallet address of referree
+                      tradeVolume:
+                        type: number
+                      isEligible:
+                        type: boolean
+                      isUnlocked:
+                        type: boolean
+                      isClaimed:
+                        type: boolean
+                    required:
+                      - wallet
+                      - tradeVolume
+                      - isEligible
+                      - isUnlocked
+                      - isClaimed
+            required:
+              - code
+              - message
+          examples:
+            example-1:
+              value:
+                code: 0
+                message: Succeeded
+                data:
+                  referree:
+                    referrerWallet: '12345'
+                    wallet: '54321'
+                    tradeVolume: 0
+                    isEligible: false
+                    isUnlocked: false
+                    isClaimed: false
+    '400':
+      description: |-
+        Bad Request
+        - wallet exceeds max length
+      content:
+        application/json:
+          schema:
+            $ref: ../components/responses/error.yaml
+          examples:
+            example-1:
+              value:
+                code: 4002
+                message: 'Input is out of range: wallet'
+                errorEntities:
+                  - wallet
+                details: []
+    '404':
+      description: |-
+        Not Found
+        - Not found referree
+      content:
+        application/json:
+          schema:
+            $ref: ../components/responses/error.yaml
+          examples:
+            example-1:
+              value:
+                code: 4040
+                message: 'Not found: referree'
+                errorEntities:
+                  - referree
+                details: []
+    '500':
+      description: Internal Server Error
+      content:
+        application/json:
+          schema:
+            $ref: ../components/responses/error.yaml
+          examples:
+            example-1:
+              value:
+                code: 5000
+                message: Internal Server Error
+                errorEntities: []
+                details: []
+  operationId: get-api-v1-referrees-wallet

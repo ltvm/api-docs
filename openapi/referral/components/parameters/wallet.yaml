@@ -1,0 +1,6 @@
+name: wallet
+in: query
+required: true
+schema:
+  type: string
+  maxLength: 255
