@@ -1,0 +1,14 @@
+type: object
+properties:
+  address:
+    type: string
+  name:
+    type: string
+  symbol:
+    type: string
+  decimals:
+    type: integer
+  weight:
+    type: integer
+  swappable:
+    type: boolean

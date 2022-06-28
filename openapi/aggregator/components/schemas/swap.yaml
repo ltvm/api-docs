@@ -1,0 +1,38 @@
+type: object
+properties:
+  inputAmount:
+    type: string
+    description: The input amount of `tokenIn`, in wei
+  outputAmount:
+    type: string
+    description: The input amount of `tokenOut`, in wei
+  totalGas:
+    type: integer
+    description: Estimated gas fee
+  gasPriceGwei:
+    type: string
+    description: Current gas price in Gwei
+  gasUsd:
+    type: number
+    description: Current gas price in USD
+  amountInUsd:
+    type: number
+    description: Estimate of input value, in USD
+  amountOutUsd:
+    type: number
+    description: Estimate of out value, in USD
+  receivedUsd:
+    type: number
+    description: Estimate of final received value, in USD
+  swaps:
+    type: array
+    description: 'Swap path, a 2-dimen array describe how swap is executed'
+    items:
+      type: array
+      items:
+        $ref: swap_sequence.yaml
+  encodedSwapData:
+    type: string
+    description: The encoded data to be sent to our router address
+  routerAddress:
+    type: string

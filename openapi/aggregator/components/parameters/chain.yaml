@@ -1,0 +1,18 @@
+name: chain
+in: path
+required: true
+schema:
+  type: string
+  enum:
+    - arbitrum
+    - aurora
+    - avalanche
+    - bsc
+    - bttc
+    - cronos
+    - ethereum
+    - fantom
+    - oasis
+    - polygon
+    - velas
+    - rinkeby

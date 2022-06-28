@@ -1,0 +1,64 @@
+get:
+  summary: Get token data
+  operationId: get-tokens
+  parameters:
+    - name: ids
+      in: query
+      schema:
+        type: string
+    - name: poolTokens
+      in: query
+      schema:
+        type: boolean
+    - name: extra
+      in: query
+      schema:
+        type: boolean
+  responses:
+    '200':
+        description: OK
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties:
+                type: object
+                properties:
+                  name:
+                    type: string
+                  decimals:
+                    type: integer
+                  symbol:
+                    type: string
+                  type:
+                    type: string
+                  price:
+                    type: number
+                  liquidity:
+                    type: number
+                  lpAddress:
+                    type: string
+                  pool:
+                    type: object
+                    properties:
+                      address:
+                        type: string
+                      totalSupply:
+                        type: number
+                      reserveUsd:
+                        type: number
+                      tokens:
+                        type: object
+                        additionalProperties:
+                          type: object
+                          properties:
+                            name:
+                              type: string
+                            decimals:
+                              type: integer
+                            symbol:
+                              type: string
+                            type:
+                              type: string
+                            weight:
+                              type: integer
