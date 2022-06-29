@@ -122,8 +122,9 @@ paths:
           in: query
           name: slippageTolerance
           description: |
-            If allow slippage, default value is 50/10000 ~ 0.5% \
-            The value ranges in [0, 10000], 10 means 0.1%
+            This is the amount of slippage the user can accept for his trade. The unit is bip. \
+            The value is in ranges [0, 2000], 10 means 0.1%. \
+            Default value is 50/10000 ~ 0.5%.
         - schema:
             type: boolean
           in: query
@@ -150,7 +151,7 @@ paths:
             type: string
           in: query
           name: feeAmount
-          description: | 
+          description: |
             Amount of Fee to be collected \
             if isInBps = true, feeAmount is the percentage of fee that we will take with base unit = 10000, i.e feeAmount = 10 means taking 0.1% \
             if isInBps = false, feeAmount is the amount of token that we will take as fee, i.e feeAmount = 10 means taking 10 token weis as fee
@@ -172,6 +173,14 @@ paths:
           in: query
           name: clientData
           description: Json string present your client
+        - schema:
+            type: string
+            enum:
+              - Latest
+          in: header
+          name: Accept-Version
+          description: Version of Aggregator
+          required: true
 components:
   schemas:
     Swap:
@@ -179,10 +188,10 @@ components:
       properties:
         inputAmount:
           type: string
-          description: The input amount of `tokenIn`, in wei
+          description: 'The input amount of `tokenIn`, in wei'
         outputAmount:
           type: string
-          description: The input amount of `tokenOut`, in wei
+          description: 'The input amount of `tokenOut`, in wei'
         totalGas:
           type: integer
           description: Estimated gas fee
@@ -194,13 +203,13 @@ components:
           description: Current gas price in USD
         amountInUsd:
           type: number
-          description: Estimate of input value, in USD
+          description: 'Estimate of input value, in USD'
         amountOutUsd:
           type: number
-          description: Estimate of out value, in USD
+          description: 'Estimate of out value, in USD'
         receivedUsd:
           type: number
-          description: Estimate of final received value, in USD
+          description: 'Estimate of final received value, in USD'
         swaps:
           type: array
           description: 'Swap path, a 2-dimen array describe how swap is executed'
