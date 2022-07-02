@@ -1,0 +1,102 @@
+get:
+  summary: Get Referrer Info
+  operationId: get-referrers
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                description: Always is 0
+              message:
+                type: string
+                description: Always is "Succeeded"
+              data:
+                type: object
+                required:
+                  - referrer
+                properties:
+                  referrer:
+                    type: object
+                    required:
+                      - referralCode
+                      - totalEarning
+                      - numReferrals
+                      - claimableReward
+                    description: Referrer information
+                    properties:
+                      referralCode:
+                        type: string
+                        description: The referral code
+                      totalEarning:
+                        type: number
+                      numReferrals:
+                        type: integer
+                        description: Number of successful referrals
+                      claimableReward:
+                        type: number
+                        description: TotalEarning - ClaimedAmount
+            required:
+              - code
+              - message
+              - data
+          examples:
+            example-1:
+              value:
+                code: 0
+                message: Succeeded
+                data:
+                  referrer:
+                    referralCode: '12345678'
+                    totalEarning: 20.2
+                    numReferrals: 2
+                    claimableReward: 10.2
+    '400':
+      description: |-
+        Bad Request
+        - wallet exceeds max length
+      content:
+        application/json:
+          schema:
+            $ref: ../components/responses/error.yaml
+          examples:
+            example-1:
+              value:
+                code: 4002
+                message: 'Input is out of range: wallet'
+                errorEntities:
+                  - wallet
+                details: []
+    '404':
+      description: |-
+        Not Found
+        - Not found referrer
+      content:
+        application/json:
+          schema:
+            $ref: ../components/responses/error.yaml
+          examples:
+            example-1:
+              value:
+                code: 4040
+                message: 'Not found: referrer'
+                errorEntities:
+                  - referrer
+                details: []
+    '500':
+      description: Internal Server Error
+      content:
+        application/json:
+          schema:
+            $ref: ../components/responses/error.yaml
+          examples:
+            example-1:
+              value:
+                code: 5000
+                message: Internal server error
+                errorEntities: []
+                details: []

@@ -1,0 +1,125 @@
+delete:
+  summary: Unsubscribe topic
+  description: Unsubscribe topic
+  tags:
+    - Topics
+  operationId: post-topics-topicId-unsubscribe
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              code:
+                type: string
+              message:
+                type: string
+              data:
+                type: object
+                properties:
+                  successCount:
+                    type: integer
+                  failureCount:
+                    type: integer
+                required:
+                  - successCount
+                  - failureCount
+            required:
+              - code
+              - message
+          examples:
+            example-1:
+              value:
+                code: '0'
+                message: Succeeded
+                data:
+                  successCount: 1
+                  failureCount: 0
+    '400':
+      description: |-
+        Bad Request
+        - Missing required fields
+        - User's type is not in the accepted values
+      content:
+        application/json:
+          schema:
+            $ref: ../components/responses/error.yaml
+          examples:
+            example-1:
+              value:
+                code: '4000'
+                message: Missing required fields
+                errorEntities:
+                  - type
+            example-2:
+              value:
+                code: '4001'
+                message: Input is not in the accepted values
+                errorEntities:
+                  - type
+    '404':
+      description: |-
+        Not Found
+        - Not found topicId
+      content:
+        application/json:
+          schema:
+            $ref: ../components/responses/error.yaml
+          examples:
+            example-1:
+              value:
+                code: '4040'
+                message: Not found
+                errorEntities:
+                  - topicId
+    '409':
+      description: |-
+        Conflict
+         - Duplicate receiving address
+      content:
+        application/json:
+          schema:
+            $ref: ../components/responses/error.yaml
+          examples:
+            example-1:
+              value:
+                code: '4090'
+                message: Duplicate data
+                errorEntities:
+                  - receivingAddress
+  requestBody:
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            users:
+              type: array
+              items:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    description: Type of user
+                    enum:
+                      - FCM_TOKEN
+                      - APNS_TOKEN
+                  receivingAddress:
+                    type: string
+                    description: |-
+                      The value of this field depend on the type:
+                      - FCM_TOKEN: the FCM device token
+                      - APNS_TOKEN: the APNS device token
+                required:
+                  - type
+                  - receivingAddress
+          required:
+            - users
+        examples:
+          example-1:
+            value:
+              users:
+                - type: FCM_TOKEN
+                  receivingAddress: string

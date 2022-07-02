@@ -1,0 +1,32 @@
+openapi: 3.1.0
+info:
+  title: Kyber Swap Aggregator APIs
+  description: |
+    Kyber Swap Aggregator APIs for external partners
+  license:
+    name: Apache 2.0
+    url: 'https://www.apache.org/licenses/LICENSE-2.0.html'
+  version: '1.0'
+  contact:
+    name: Tien
+    email: matthew@kyber.network
+    url: 'https://kyberswap.com'
+servers:
+  - url: 'https://aggregator-api.kyberswap.com'
+paths:
+  '/{chain}/route/encode':
+    parameters:
+      - $ref: components/parameters/chain.yaml
+    $ref: paths/get_route_encode.yaml
+  '/{chain}/tokens':
+    parameters:
+      - $ref: components/parameters/chain.yaml
+    $ref: paths/get_tokens.yaml
+  '/{chain}pools':
+    parameters:
+      - $ref: components/parameters/chain.yaml
+    $ref: paths/get_pools.yaml
+  '/{chain}/prices':
+    parameters:
+      - $ref: components/parameters/chain.yaml
+    $ref: paths/get_prices.yaml

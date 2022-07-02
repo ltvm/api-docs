@@ -1,0 +1,25 @@
+get:
+  summary: Get prices
+  operationId: get-prices
+  parameters:
+    - name: ids
+      in: query
+      schema:
+        type: string
+    - $ref: ../components/parameters/debug.yaml
+  responses:
+    '200':
+        description: OK
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties:
+                type: object
+                properties:
+                  price:
+                    type: number
+                  liquidity:
+                    type: number
+                  lpAddress:
+                    type: string

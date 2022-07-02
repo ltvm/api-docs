@@ -1,0 +1,26 @@
+type: object
+properties:
+  reserveUsd:
+    type: number
+  amplifiedTv1:
+    type: number
+  exchange:
+    type: string
+  type:
+    type: string
+  timestamp:
+    type: number
+    format: unix-timestamp
+  reserves:
+    type: array
+    items:
+      type: string
+  tokens:
+    type: array
+    items:
+      $ref: pool_token.yaml
+  extra:
+    type: string
+    format: json
+  totalSupply:
+    type: string

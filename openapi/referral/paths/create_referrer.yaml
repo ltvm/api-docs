@@ -1,0 +1,98 @@
+post:
+  summary: Create Referrer
+  operationId: post-referrers
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                description: Always is 0
+              message:
+                type: string
+                description: Always is "Succeeded"
+              data:
+                type: object
+                required:
+                  - referrer
+                properties:
+                  referrer:
+                    type: object
+                    required:
+                      - wallet
+                      - referralCode
+                    properties:
+                      wallet:
+                        type: string
+                      referralCode:
+                        type: string
+            required:
+              - code
+              - message
+              - data
+          examples:
+            example-1:
+              value:
+                code: 0
+                message: Succeeded
+                data:
+                  referrer:
+                    wallet: '12345678'
+                    referralCode: a123f43d56
+    '400':
+      description: |-
+        Bad Request
+        - Missing wallet in request body
+        - Wallet exceeds max length
+      content:
+        application/json:
+          schema:
+            $ref: ../components/responses/error.yaml
+          examples:
+            example-1:
+              value:
+                code: 4000
+                message: 'Missing required fields: wallet'
+                errorEntities:
+                  - wallet
+                details: []
+            example-2:
+              value:
+                code: 4002
+                message: 'Input is out of range: wallet'
+                errorEntities:
+                  - wallet
+                details: []
+    '500':
+      description: Internal Server Error
+      content:
+        application/json:
+          schema:
+            $ref: ../components/responses/error.yaml
+          examples:
+            example-1:
+              value:
+                code: 5000
+                message: Internal server error
+                errorEntities: []
+                details: []
+  requestBody:
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            wallet:
+              type: string
+              description: The wallet address
+              maxLength: 255
+          required:
+            - wallet
+        examples:
+          example-1:
+            value:
+              wallet: '12345678'

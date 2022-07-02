@@ -1,0 +1,93 @@
+patch:
+  summary: Unlock reward for referree
+  operationId: patch-api-v1-referrees-unlock
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                description: Always is 0
+              message:
+                type: string
+                description: Always is "Succeeded"
+              data:
+                type: object
+            required:
+              - code
+              - message
+          examples:
+            example-1:
+              value:
+                code: 0
+                message: Succeeded
+                data: null
+    '400':
+      description: |-
+        Bad Request
+        - Missing wallet in request body
+        - wallet exceeds max length
+        - referree is not eligible
+      content:
+        application/json:
+          schema:
+            $ref: ../components/responses/error.yaml
+          examples:
+            example-1:
+              value:
+                code: 4000
+                message: 'Missing required fields: wallet'
+                errorEntities:
+                  - wallet
+                details: []
+    '404':
+      description: |-
+        Not Found
+        - Not found referree
+      content:
+        application/json:
+          schema:
+            $ref: ../components/responses/error.yaml
+          examples:
+            example-1:
+              value:
+                code: 4040
+                message: 'Not found: referree'
+                errorEntities:
+                  - referree
+                details:
+                  - null
+    '500':
+      description: Internal Server Error
+      content:
+        application/json:
+          schema:
+            $ref: ../components/responses/error.yaml
+          examples:
+            example-1:
+              value:
+                code: 5000
+                message: Internal Server Error
+                errorEntities: []
+                details:
+                  - null
+  requestBody:
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            wallet:
+              type: string
+              maxLength: 255
+              description: The wallet address of the referree
+          required:
+            - wallet
+        examples:
+          example-1:
+            value:
+              wallet: '12345'

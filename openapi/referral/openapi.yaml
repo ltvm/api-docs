@@ -1,0 +1,40 @@
+openapi: 3.1.0
+info:
+  title: Kyber Swap Referral V2 APIs
+  description: |
+    Kyber Swap Referral V2 APIs
+  license:
+    name: Apache 2.0
+    url: 'https://www.apache.org/licenses/LICENSE-2.0.html'
+  version: '1.0'
+  contact:
+    name: Viet-Anh
+    email: alvin.nguyen@kyber.network
+    url: 'https://kyberswap.com'
+servers:
+  - url: 'https://referral.kyberengineering.io'
+paths:
+  '/api/v1/referrers/{wallet}':
+    parameters:
+      - name: wallet
+        in: path
+        required: true
+        schema:
+          type: string
+          maxLength: 255
+    $ref: paths/get_referrer.yaml
+  /api/v1/referrers:
+    $ref: paths/create_referrer.yaml
+  /api/v1/referrers/leaderboard:
+    $ref: paths/get_referrer_leaderboard.yaml
+  '/api/v1/referrees/{wallet}':
+    parameters:
+      - name: wallet
+        in: path
+        required: true
+        schema:
+          type: string
+          maxLength: 255
+    $ref: paths/get_referee.yaml
+  /api/v1/referrees/unlock:
+    $ref: paths/unlock_reward.yaml

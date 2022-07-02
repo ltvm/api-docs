@@ -1,0 +1,103 @@
+get:
+  summary: Get Referrer Leaderboard
+  tags: []
+  parameters:
+    - $ref: ../components/parameters/wallet.yaml
+    - $ref: ../components/parameters/page.yaml
+    - $ref: ../components/parameters/page_size.yaml
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                description: Always is 0
+              message:
+                type: string
+                description: Always is "Succeeded"
+              data:
+                type: object
+                required:
+                  - referrers
+                  - pagination
+                properties:
+                  referrers:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        wallet:
+                          type: string
+                        numReferrals:
+                          type: integer
+                        totalEarning:
+                          type: number
+                        rankNo:
+                          type: integer
+                      required:
+                        - wallet
+                        - numReferrals
+                        - totalEarning
+                        - rankNo
+                  pagination:
+                    type: object
+                    required:
+                      - totalItems
+                    properties:
+                      totalItems:
+                        type: integer
+            required:
+              - code
+              - message
+              - data
+          examples:
+            example-1:
+              value:
+                code: 0
+                message: Succeeded
+                data:
+                  referrers:
+                    - wallet: '12345678'
+                      numReferrals: 2
+                      totalEarning: 20.1
+                      rankNo: 1
+                  pagination:
+                    totalItems: 1
+    '400':
+      description: |-
+        Bad Request
+        - wallet exceeds max length
+        - page is less than min value
+        - page is invalid format
+        - pageSize is less than min value/greater than max value
+        - pageSize is invalid format
+      content:
+        application/json:
+          schema:
+            $ref: ../components/responses/error.yaml
+          examples:
+            example-1:
+              value:
+                code: 4002
+                message: 'Input is out of range: wallet'
+                errorEntities:
+                  - wallet
+                details: []
+    '500':
+      description: Internal Server Error
+      content:
+        application/json:
+          schema:
+            $ref: ../components/responses/error.yaml
+          examples:
+            example-1:
+              value:
+                code: 5000
+                message: Internal Server Error
+                errorEntities: []
+                details: []
+  operationId: get-referrers-leaderboard

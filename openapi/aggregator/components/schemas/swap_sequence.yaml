@@ -1,0 +1,33 @@
+type: object
+properties:
+  pool:
+    type: string
+    description: The address of the pool used in our executor
+  tokenIn:
+    type: string
+    description: The input token for this pool
+  tokenOut:
+    type: string
+    description: The output token for this pool
+  swapAmount:
+    type: string
+    description: The input amount swap through this pool
+  amountOut:
+    type: string
+    description: The output amount after swap through this pool
+  limitReturnAmount:
+    type: string
+    description: The limit return amount
+  maxPrice:
+    type: string
+    description: The max price
+  exchange:
+    type: string
+    description: The original exchange of this pool
+  poolLength:
+    type: integer
+    description: The number of token in this pool
+  poolType:
+    type: string
+    description: |
+      The type of this pool (internal definition by our aggregator)
