@@ -1,8 +1,8 @@
 openapi: 3.0.0
 info:
-  title: Kyber Swap Type-and-Swap V1 APIs
+  title: Kyber Swap Type and Swap APIs
   version: '1.0'
-  description: Kyber Swap Type-and-Swap V1 APIs
+  description: Kyber Swap Type and Swap APIs
   contact:
     name: Quang-Le
     url: 'https://kyberswap.com'
@@ -16,7 +16,8 @@ paths:
   /api/v1/suggested-pairs:
     get:
       summary: Get suggested pairs by user text input
-      tags: []
+      tags:
+        - Suggested pairs
       responses:
         '200':
           description: OK
@@ -24,42 +25,6 @@ paths:
             application/json:
               schema:
                 type: object
-                x-examples:
-                  example-1:
-                    code: 0
-                    message: Succedded
-                    data:
-                      pairs:
-                        - tokenIn: '0xdAC17F958D2ee523a2206206994597C13D831ec7'
-                          tokenInSymbol: USDT
-                          tokenInImgUrl: 'https://images.com/usdt'
-                          tokenOut: 0x...
-                          tokenOutSymbol: THECA
-                          tokenOutImgUrl: 'https://images.com/theca'
-                        - tokenIn: '0xdAC17F958D2ee523a2206206994597C13D831ec7'
-                          tokenInSymbol: USDT
-                          tokenInImgUrl: 'https://images.com/usdt'
-                          tokenOut: 0x...
-                          tokenOutSymbol: THUGZ
-                          tokenOutImgUrl: 'https://images.com/thugz'
-                        - tokenIn: '0xdAC17F958D2ee523a2206206994597C13D831ec7'
-                          tokenInSymbol: USDT
-                          tokenInImgUrl: 'https://images.com/usdt'
-                          tokenOut: 0x...
-                          tokenOutSymbol: THC
-                          tokenOutImgUrl: 'https://images.com/thc'
-                        - tokenIn: '0xdAC17F958D2ee523a2206206994597C13D831ec7'
-                          tokenInSymbol: USDT
-                          tokenInImgUrl: 'https://images.com/usdt'
-                          tokenOut: 0x...
-                          tokenOutSymbol: ETH
-                          tokenOutImgUrl: 'https://images.com/eth'
-                        - tokenIn: '0xdAC17F958D2ee523a2206206994597C13D831ec7'
-                          tokenInSymbol: USDT
-                          tokenInImgUrl: 'https://images.com/usdt'
-                          tokenOut: 0x...
-                          tokenOutSymbol: ETHBULL
-                          tokenOutImgUrl: 'https://images.com/ethbull'
                 properties:
                   code:
                     type: integer
@@ -182,12 +147,6 @@ paths:
             application/json:
               schema:
                 type: object
-                x-examples:
-                  example-1:
-                    code: 5000
-                    message: Internal Server Error
-                    errorEntities: []
-                    details: []
                 properties:
                   code:
                     description: Error code
@@ -276,12 +235,6 @@ paths:
           application/json:
             schema:
               type: object
-              x-examples:
-                example-1:
-                  wallet: string
-                  chainId: 0
-                  tokenIn: string
-                  tokenOut: string
               properties:
                 wallet:
                   type: string
@@ -313,20 +266,6 @@ paths:
             application/json:
               schema:
                 type: object
-                x-examples:
-                  example-1:
-                    code: 10
-                    message: string
-                    data:
-                      wallet: '0x86e5e58653B9337e8612ECf4D86f92DE3AeabC1a'
-                      chainId: 1
-                      favorite:
-                        tokenIn: '0xdeFA4e8a7bcBA345F687a2f1456F5Edd9CE97202'
-                        tokenInSymbol: KNC
-                        tokenInImgUrl: 'https://images.com/knc'
-                        tokenOut: '0xdac17f958d2ee523a2206206994597c13d831ec7'
-                        tokenOutSymbol: USDT
-                        tokenOutImgUrl: 'https://images.com/usdt'
                 properties:
                   code:
                     type: integer
@@ -356,14 +295,6 @@ paths:
             application/json:
               schema:
                 type: object
-                x-examples:
-                  example-1:
-                    code: string
-                    message: string
-                    errorEntities:
-                      - string
-                    details:
-                      - null
                 properties:
                   code:
                     description: Error code
@@ -399,13 +330,6 @@ paths:
             application/json:
               schema:
                 type: object
-                x-examples:
-                  example-1:
-                    code: 4000
-                    message: 'Missing required fields: wallet'
-                    errorEntities:
-                      - wallet
-                    details: []
                 properties:
                   code:
                     type: integer
@@ -437,13 +361,6 @@ paths:
             application/json:
               schema:
                 type: object
-                x-examples:
-                  example-1:
-                    code: string
-                    message: string
-                    errorEntities:
-                      - string
-                    details: []
                 properties:
                   code:
                     description: Error code
@@ -470,6 +387,8 @@ paths:
                     message: Internal Server Error
                     errorEntities: []
                     details: []
+      tags:
+        - Favorite pairs
     delete:
       summary: Remove favorited trading pair
       operationId: delete-api-v1-favorite
@@ -478,12 +397,6 @@ paths:
           application/json:
             schema:
               type: object
-              x-examples:
-                example-1:
-                  wallet: string
-                  chainId: 0
-                  tokenIn: string
-                  tokenOut: string
               properties:
                 wallet:
                   type: string
@@ -514,20 +427,6 @@ paths:
             application/json:
               schema:
                 type: object
-                x-examples:
-                  example-1:
-                    code: 0
-                    message: string
-                    data:
-                      wallet: string
-                      chainId: 0
-                      favorite:
-                        tokenIn: string
-                        tokenInSymbol: string
-                        tokenInImgUrl: string
-                        tokenOut: string
-                        tokenOutSymbol: string
-                        tokenOutImgUrl: string
                 properties:
                   code:
                     type: integer
@@ -555,14 +454,6 @@ paths:
             application/json:
               schema:
                 type: object
-                x-examples:
-                  example-1:
-                    code: string
-                    message: string
-                    errorEntities:
-                      - string
-                    details:
-                      - null
                 properties:
                   code:
                     description: Error code
@@ -596,14 +487,6 @@ paths:
             application/json:
               schema:
                 type: object
-                x-examples:
-                  example-1:
-                    code: string
-                    message: string
-                    errorEntities:
-                      - string
-                    details:
-                      - null
                 description: Error code
                 properties:
                   code:
@@ -630,8 +513,6 @@ paths:
                     message: Internal Server Error
                     errorEntities: []
                     details: []
+      tags:
+        - Favorite pairs
     parameters: []
-components:
-  schemas: {}
-  responses: {}
-  requestBodies: {}
