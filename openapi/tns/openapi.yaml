@@ -229,7 +229,7 @@ paths:
   /api/v1/favorite-pairs:
     post:
       summary: Add new favorite trading pair
-      operationId: post-api-v1-favorite
+      operationId: post-api-favorite
       requestBody:
         content:
           application/json:
@@ -391,7 +391,7 @@ paths:
         - Favorite pairs
     delete:
       summary: Remove favorited trading pair
-      operationId: delete-api-v1-favorite
+      operationId: delete-api-favorite
       requestBody:
         content:
           application/json:
