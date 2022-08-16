@@ -1,0 +1,2723 @@
+openapi: 3.1.0
+info:
+  title: Trading Contest API
+  version: "1.0"
+  description: ""
+  contact:
+    name: Nguyễn Hữu Dũng
+    email: dungnh@kyber.network
+    url: "https://t.me/nguyenhuudungz"
+servers:
+  - url: "https://campaigns.dev.kyberengineering.io/api/v1"
+    description: dev
+  - url: "https://campaigns-admin.dev.kyberengineering.io/api/v1"
+    description: dev admin
+  - url: "https://campaigns.stg.kyberengineering.io/api/v1"
+    description: staging
+  - url: "https://campaigns-admin.stg.kyberengineering.io/api/v1"
+    description: staging admin
+  - url: "https://campaigns.kyberswap.com/api/v1"
+    description: production
+  - url: "https://campaigns-admin.kyberengineering.io/api/v1"
+    description: production admin
+paths:
+  /campaigns:
+    parameters: []
+    get:
+      summary: Get list campaign
+      tags: []
+      responses:
+        "200":
+          description: ""
+          content:
+            application/json:
+              schema:
+                type: object
+                x-examples:
+                  example-1:
+                    code: 0
+                    message: Get campaigns successfully
+                    data:
+                      - id: 1
+                        name: nhdz_1
+                        startTime: 1659916800
+                        endTime: 1660106007
+                        desktopBanner: a
+                        mobileBanner: b
+                        rules: <p>1</p>
+                        termsAndConditions: <p>2</p>
+                        rewardDetails: <p>4</p>
+                        otherDetails: <p>3</p>
+                        isRewardShown: true
+                        enterNowUrl: "https://kyberswap.com/swap"
+                        rewardDistribution:
+                          single:
+                            - rank: 1
+                              amount: "5"
+                              token:
+                                chainId: 4
+                                name: Ethereum
+                                symbol: ETH
+                                address: "0"
+                                logoURI: "https://s2.coinmarketcap.com/static/img/coins/200x200/1027.png"
+                                decimals: 18
+                              byUsd: true
+                          range:
+                            - from: 2
+                              to: 5
+                              amount: "8"
+                              token:
+                                chainId: 4
+                                name: Ethereum
+                                symbol: ETH
+                                address: "0"
+                                logoURI: "https://s2.coinmarketcap.com/static/img/coins/200x200/1027.png"
+                                decimals: 18
+                              byUsd: true
+                          random:
+                            - from: 6
+                              to: 10
+                              amount: "6"
+                              numberOfWinners: 3
+                              token:
+                                chainId: 4
+                                name: Ethereum
+                                symbol: ETH
+                                address: "0"
+                                logoURI: "https://s2.coinmarketcap.com/static/img/coins/200x200/1027.png"
+                                decimals: 18
+                              byUsd: true
+                        eligibleTokens: []
+                        tradingVolumeRequired: 0
+                        campaignState: 2
+                        chainIds: "199"
+                        rewardChainIds: "4"
+                        leaderboard_id: null
+                        source: ""
+                      - id: 2
+                        name: nhdz_2
+                        startTime: 1660112885
+                        endTime: 1660113005
+                        desktopBanner: a
+                        mobileBanner: b
+                        rules: <p>1</p>
+                        termsAndConditions: <p>2</p>
+                        rewardDetails: <p>4</p>
+                        otherDetails: <p>3</p>
+                        isRewardShown: true
+                        enterNowUrl: "https://kyberswap.com/swap"
+                        rewardDistribution:
+                          single:
+                            - rank: 1
+                              amount: "5"
+                              token:
+                                chainId: 4
+                                name: Ethereum
+                                symbol: ETH
+                                address: "0"
+                                logoURI: "https://s2.coinmarketcap.com/static/img/coins/200x200/1027.png"
+                                decimals: 18
+                              byUsd: true
+                          range:
+                            - from: 2
+                              to: 5
+                              amount: "8"
+                              token:
+                                chainId: 4
+                                name: Ethereum
+                                symbol: ETH
+                                address: "0"
+                                logoURI: "https://s2.coinmarketcap.com/static/img/coins/200x200/1027.png"
+                                decimals: 18
+                              byUsd: true
+                          random:
+                            - from: 6
+                              to: 10
+                              amount: "6"
+                              numberOfWinners: 3
+                              token:
+                                chainId: 4
+                                name: Ethereum
+                                symbol: ETH
+                                address: "0"
+                                logoURI: "https://s2.coinmarketcap.com/static/img/coins/200x200/1027.png"
+                                decimals: 18
+                              byUsd: true
+                        eligibleTokens: []
+                        tradingVolumeRequired: 0
+                        campaignState: 2
+                        chainIds: "199"
+                        rewardChainIds: "4"
+                        leaderboard_id: null
+                        source: ""
+                      - id: 3
+                        name: nhdz_3
+                        startTime: 1660112885
+                        endTime: 1660114385
+                        desktopBanner: a
+                        mobileBanner: b
+                        rules: <p>1</p>
+                        termsAndConditions: <p>2</p>
+                        rewardDetails: <p>4</p>
+                        otherDetails: <p>3</p>
+                        isRewardShown: true
+                        enterNowUrl: "https://kyberswap.com/swap"
+                        rewardDistribution:
+                          single:
+                            - rank: 1
+                              amount: "5"
+                              token:
+                                chainId: 4
+                                name: Ethereum
+                                symbol: ETH
+                                address: "0"
+                                logoURI: "https://s2.coinmarketcap.com/static/img/coins/200x200/1027.png"
+                                decimals: 18
+                              byUsd: true
+                          range:
+                            - from: 2
+                              to: 5
+                              amount: "8"
+                              token:
+                                chainId: 4
+                                name: Ethereum
+                                symbol: ETH
+                                address: "0"
+                                logoURI: "https://s2.coinmarketcap.com/static/img/coins/200x200/1027.png"
+                                decimals: 18
+                              byUsd: true
+                          random:
+                            - from: 6
+                              to: 10
+                              amount: "6"
+                              numberOfWinners: 3
+                              token:
+                                chainId: 4
+                                name: Ethereum
+                                symbol: ETH
+                                address: "0"
+                                logoURI: "https://s2.coinmarketcap.com/static/img/coins/200x200/1027.png"
+                                decimals: 18
+                              byUsd: true
+                        eligibleTokens: []
+                        tradingVolumeRequired: 0
+                        campaignState: 2
+                        chainIds: "199"
+                        rewardChainIds: "4"
+                        leaderboard_id: null
+                        source: ""
+                      - id: 4
+                        name: nhdz_4
+                        startTime: 1660112885
+                        endTime: 1660115045
+                        desktopBanner: a
+                        mobileBanner: b
+                        rules: <p>1</p>
+                        termsAndConditions: <p>2</p>
+                        rewardDetails: <p>4</p>
+                        otherDetails: <p>3</p>
+                        isRewardShown: true
+                        enterNowUrl: "https://kyberswap.com/swap"
+                        rewardDistribution:
+                          single:
+                            - rank: 1
+                              amount: "5"
+                              token:
+                                chainId: 4
+                                name: Ethereum
+                                symbol: ETH
+                                address: "0"
+                                logoURI: "https://s2.coinmarketcap.com/static/img/coins/200x200/1027.png"
+                                decimals: 18
+                              byUsd: false
+                          range:
+                            - from: 2
+                              to: 5
+                              amount: "8"
+                              token:
+                                chainId: 4
+                                name: Ethereum
+                                symbol: ETH
+                                address: "0"
+                                logoURI: "https://s2.coinmarketcap.com/static/img/coins/200x200/1027.png"
+                                decimals: 18
+                              byUsd: false
+                          random:
+                            - from: 6
+                              to: 10
+                              amount: "6"
+                              numberOfWinners: 3
+                              token:
+                                chainId: 4
+                                name: Ethereum
+                                symbol: ETH
+                                address: "0"
+                                logoURI: "https://s2.coinmarketcap.com/static/img/coins/200x200/1027.png"
+                                decimals: 18
+                              byUsd: false
+                        eligibleTokens: []
+                        tradingVolumeRequired: 0
+                        campaignState: 2
+                        chainIds: "199"
+                        rewardChainIds: "4"
+                        leaderboard_id: null
+                        source: ""
+                      - id: 5
+                        name: nhdz_5
+                        startTime: 1660112885
+                        endTime: 1660115295
+                        desktopBanner: a
+                        mobileBanner: b
+                        rules: <p>1</p>
+                        termsAndConditions: <p>2</p>
+                        rewardDetails: <p>4</p>
+                        otherDetails: <p>3</p>
+                        isRewardShown: true
+                        enterNowUrl: "https://kyberswap.com/swap"
+                        rewardDistribution:
+                          single:
+                            - rank: 1
+                              amount: "5"
+                              token:
+                                chainId: 4
+                                name: Ethereum
+                                symbol: ETH
+                                address: "0"
+                                logoURI: "https://s2.coinmarketcap.com/static/img/coins/200x200/1027.png"
+                                decimals: 18
+                              byUsd: false
+                          range:
+                            - from: 2
+                              to: 5
+                              amount: "8"
+                              token:
+                                chainId: 4
+                                name: Ethereum
+                                symbol: ETH
+                                address: "0"
+                                logoURI: "https://s2.coinmarketcap.com/static/img/coins/200x200/1027.png"
+                                decimals: 18
+                              byUsd: false
+                          random:
+                            - from: 6
+                              to: 10
+                              amount: "6"
+                              numberOfWinners: 3
+                              token:
+                                chainId: 4
+                                name: Ethereum
+                                symbol: ETH
+                                address: "0"
+                                logoURI: "https://s2.coinmarketcap.com/static/img/coins/200x200/1027.png"
+                                decimals: 18
+                              byUsd: false
+                        eligibleTokens: []
+                        tradingVolumeRequired: 0
+                        campaignState: 2
+                        chainIds: "199"
+                        rewardChainIds: "4"
+                        leaderboard_id: null
+                        source: ""
+                      - id: 6
+                        name: nhdz_6
+                        startTime: 1660112885
+                        endTime: 1660115295
+                        desktopBanner: a
+                        mobileBanner: b
+                        rules: <p>1</p>
+                        termsAndConditions: <p>2</p>
+                        rewardDetails: <p>4</p>
+                        otherDetails: <p>3</p>
+                        isRewardShown: true
+                        enterNowUrl: "https://kyberswap.com/swap"
+                        rewardDistribution:
+                          single:
+                            - rank: 1
+                              amount: "5"
+                              token:
+                                chainId: 4
+                                name: Ethereum
+                                symbol: ETH
+                                address: "0"
+                                logoURI: "https://s2.coinmarketcap.com/static/img/coins/200x200/1027.png"
+                                decimals: 18
+                              byUsd: false
+                          range:
+                            - from: 2
+                              to: 5
+                              amount: "8"
+                              token:
+                                chainId: 4
+                                name: Ethereum
+                                symbol: ETH
+                                address: "0"
+                                logoURI: "https://s2.coinmarketcap.com/static/img/coins/200x200/1027.png"
+                                decimals: 18
+                              byUsd: false
+                          random:
+                            - from: 6
+                              to: 10
+                              amount: "6"
+                              numberOfWinners: 3
+                              token:
+                                chainId: 4
+                                name: Ethereum
+                                symbol: ETH
+                                address: "0"
+                                logoURI: "https://s2.coinmarketcap.com/static/img/coins/200x200/1027.png"
+                                decimals: 18
+                              byUsd: false
+                        eligibleTokens: []
+                        tradingVolumeRequired: 0
+                        campaignState: 2
+                        chainIds: "199"
+                        rewardChainIds: "4"
+                        leaderboard_id: null
+                        source: ""
+                      - id: 7
+                        name: nhdz_6
+                        startTime: 1660112885
+                        endTime: 1660115295
+                        desktopBanner: a
+                        mobileBanner: b
+                        rules: <p>1</p>
+                        termsAndConditions: <p>2</p>
+                        rewardDetails: <p>4</p>
+                        otherDetails: <p>3</p>
+                        isRewardShown: true
+                        enterNowUrl: "https://kyberswap.com/swap"
+                        rewardDistribution:
+                          single:
+                            - rank: 1
+                              amount: "5"
+                              token:
+                                chainId: 4
+                                name: Ethereum
+                                symbol: ETH
+                                address: "0"
+                                logoURI: "https://s2.coinmarketcap.com/static/img/coins/200x200/1027.png"
+                                decimals: 18
+                              byUsd: false
+                          range:
+                            - from: 2
+                              to: 5
+                              amount: "8"
+                              token:
+                                chainId: 4
+                                name: Ethereum
+                                symbol: ETH
+                                address: "0"
+                                logoURI: "https://s2.coinmarketcap.com/static/img/coins/200x200/1027.png"
+                                decimals: 18
+                              byUsd: false
+                          random:
+                            - from: 6
+                              to: 10
+                              amount: "6"
+                              numberOfWinners: 3
+                              token:
+                                chainId: 4
+                                name: Ethereum
+                                symbol: ETH
+                                address: "0"
+                                logoURI: "https://s2.coinmarketcap.com/static/img/coins/200x200/1027.png"
+                                decimals: 18
+                              byUsd: false
+                        eligibleTokens: []
+                        tradingVolumeRequired: 0
+                        campaignState: 2
+                        chainIds: "199"
+                        rewardChainIds: "4"
+                        leaderboard_id: null
+                        source: ""
+                      - id: 8
+                        name: nhdz_7
+                        startTime: 1660112885
+                        endTime: 1660115295
+                        desktopBanner: a
+                        mobileBanner: b
+                        rules: <p>1</p>
+                        termsAndConditions: <p>2</p>
+                        rewardDetails: <p>4</p>
+                        otherDetails: <p>3</p>
+                        isRewardShown: true
+                        enterNowUrl: "https://kyberswap.com/swap"
+                        rewardDistribution:
+                          single:
+                            - rank: 1
+                              amount: "5"
+                              token:
+                                chainId: 4
+                                name: Ethereum
+                                symbol: ETH
+                                address: "0"
+                                logoURI: "https://s2.coinmarketcap.com/static/img/coins/200x200/1027.png"
+                                decimals: 18
+                              byUsd: false
+                          range:
+                            - from: 2
+                              to: 5
+                              amount: "8"
+                              token:
+                                chainId: 4
+                                name: Ethereum
+                                symbol: ETH
+                                address: "0"
+                                logoURI: "https://s2.coinmarketcap.com/static/img/coins/200x200/1027.png"
+                                decimals: 18
+                              byUsd: false
+                          random:
+                            - from: 6
+                              to: 10
+                              amount: "6"
+                              numberOfWinners: 3
+                              token:
+                                chainId: 4
+                                name: Ethereum
+                                symbol: ETH
+                                address: "0"
+                                logoURI: "https://s2.coinmarketcap.com/static/img/coins/200x200/1027.png"
+                                decimals: 18
+                              byUsd: false
+                        eligibleTokens: []
+                        tradingVolumeRequired: 0
+                        campaignState: 2
+                        chainIds: "199"
+                        rewardChainIds: "4"
+                        leaderboard_id: null
+                        source: ""
+                      - id: 9
+                        name: nhdz_9
+                        startTime: 1660112885
+                        endTime: 1660115295
+                        desktopBanner: a
+                        mobileBanner: b
+                        rules: <p>1</p>
+                        termsAndConditions: <p>2</p>
+                        rewardDetails: <p>4</p>
+                        otherDetails: <p>3</p>
+                        isRewardShown: true
+                        enterNowUrl: "https://kyberswap.com/swap"
+                        rewardDistribution:
+                          single:
+                            - rank: 1
+                              amount: "5"
+                              token:
+                                chainId: 4
+                                name: Ethereum
+                                symbol: ETH
+                                address: "0"
+                                logoURI: "https://s2.coinmarketcap.com/static/img/coins/200x200/1027.png"
+                                decimals: 18
+                              byUsd: false
+                          range:
+                            - from: 2
+                              to: 5
+                              amount: "8"
+                              token:
+                                chainId: 4
+                                name: Ethereum
+                                symbol: ETH
+                                address: "0"
+                                logoURI: "https://s2.coinmarketcap.com/static/img/coins/200x200/1027.png"
+                                decimals: 18
+                              byUsd: false
+                          random:
+                            - from: 6
+                              to: 10
+                              amount: "6"
+                              numberOfWinners: 3
+                              token:
+                                chainId: 4
+                                name: Ethereum
+                                symbol: ETH
+                                address: "0"
+                                logoURI: "https://s2.coinmarketcap.com/static/img/coins/200x200/1027.png"
+                                decimals: 18
+                              byUsd: false
+                        eligibleTokens: []
+                        tradingVolumeRequired: 0
+                        campaignState: 2
+                        chainIds: "199"
+                        rewardChainIds: "4"
+                        leaderboard_id: null
+                        source: ""
+                      - id: 10
+                        name: nhdz_10
+                        startTime: 1660112885
+                        endTime: 1660115295
+                        desktopBanner: a
+                        mobileBanner: b
+                        rules: <p>1</p>
+                        termsAndConditions: <p>2</p>
+                        rewardDetails: <p>4</p>
+                        otherDetails: <p>3</p>
+                        isRewardShown: true
+                        enterNowUrl: "https://kyberswap.com/swap"
+                        rewardDistribution:
+                          single:
+                            - rank: 1
+                              amount: "5"
+                              token:
+                                chainId: 4
+                                name: Ethereum
+                                symbol: ETH
+                                address: "0"
+                                logoURI: "https://s2.coinmarketcap.com/static/img/coins/200x200/1027.png"
+                                decimals: 18
+                              byUsd: false
+                          range:
+                            - from: 2
+                              to: 5
+                              amount: "8"
+                              token:
+                                chainId: 4
+                                name: Ethereum
+                                symbol: ETH
+                                address: "0"
+                                logoURI: "https://s2.coinmarketcap.com/static/img/coins/200x200/1027.png"
+                                decimals: 18
+                              byUsd: false
+                          random:
+                            - from: 6
+                              to: 10
+                              amount: "6"
+                              numberOfWinners: 3
+                              token:
+                                chainId: 4
+                                name: Ethereum
+                                symbol: ETH
+                                address: "0"
+                                logoURI: "https://s2.coinmarketcap.com/static/img/coins/200x200/1027.png"
+                                decimals: 18
+                              byUsd: false
+                        eligibleTokens: []
+                        tradingVolumeRequired: 0
+                        campaignState: 1
+                        chainIds: "199"
+                        rewardChainIds: "4"
+                        leaderboard_id: null
+                        source: ""
+                      - id: 11
+                        name: nhdz_11
+                        startTime: 1660060800
+                        endTime: 1660150800
+                        desktopBanner: "https://via.placeholder.com/800x200"
+                        mobileBanner: "https://via.placeholder.com/343x132"
+                        rules: <p>1</p>
+                        termsAndConditions: <p>2</p>
+                        rewardDetails: <p>4</p>
+                        otherDetails: <p>3</p>
+                        isRewardShown: false
+                        enterNowUrl: "https://kyberswap.com/swap"
+                        rewardDistribution:
+                          single:
+                            - rank: 1
+                              amount: "5"
+                              token:
+                                chainId: 1
+                                name: Ethereum
+                                symbol: ETH
+                                address: "0"
+                                logoURI: "https://s2.coinmarketcap.com/static/img/coins/200x200/1027.png"
+                                decimals: 18
+                              byUsd: true
+                          range:
+                            - from: 2
+                              to: 5
+                              amount: "8"
+                              token:
+                                chainId: 1
+                                name: Ethereum
+                                symbol: ETH
+                                address: "0"
+                                logoURI: "https://s2.coinmarketcap.com/static/img/coins/200x200/1027.png"
+                                decimals: 18
+                              byUsd: true
+                          random:
+                            - from: 6
+                              to: 10
+                              amount: "6"
+                              numberOfWinners: 3
+                              token:
+                                chainId: 1
+                                name: Ethereum
+                                symbol: ETH
+                                address: "0"
+                                logoURI: "https://s2.coinmarketcap.com/static/img/coins/200x200/1027.png"
+                                decimals: 18
+                              byUsd: true
+                        eligibleTokens: []
+                        tradingVolumeRequired: 0
+                        campaignState: 2
+                        chainIds: "199"
+                        rewardChainIds: "1"
+                        leaderboard_id: null
+                        source: ""
+                      - id: 12
+                        name: nhdz_12
+                        startTime: 1660060800
+                        endTime: 1660150800
+                        desktopBanner: "https://via.placeholder.com/800x200"
+                        mobileBanner: "https://via.placeholder.com/343x132"
+                        rules: <p>1</p>
+                        termsAndConditions: <p>2</p>
+                        rewardDetails: <p>4</p>
+                        otherDetails: <p>3</p>
+                        isRewardShown: false
+                        enterNowUrl: "https://kyberswap.com/swap"
+                        rewardDistribution:
+                          single:
+                            - rank: 1
+                              amount: "5"
+                              token:
+                                chainId: 1
+                                name: Ethereum
+                                symbol: ETH
+                                address: "0"
+                                logoURI: "https://s2.coinmarketcap.com/static/img/coins/200x200/1027.png"
+                                decimals: 18
+                              byUsd: true
+                          range:
+                            - from: 2
+                              to: 5
+                              amount: "8"
+                              token:
+                                chainId: 1
+                                name: Ethereum
+                                symbol: ETH
+                                address: "0"
+                                logoURI: "https://s2.coinmarketcap.com/static/img/coins/200x200/1027.png"
+                                decimals: 18
+                              byUsd: true
+                          random:
+                            - from: 6
+                              to: 10
+                              amount: "6"
+                              numberOfWinners: 3
+                              token:
+                                chainId: 1
+                                name: Ethereum
+                                symbol: ETH
+                                address: "0"
+                                logoURI: "https://s2.coinmarketcap.com/static/img/coins/200x200/1027.png"
+                                decimals: 18
+                              byUsd: true
+                        eligibleTokens: []
+                        tradingVolumeRequired: 0
+                        campaignState: 1
+                        chainIds: "199"
+                        rewardChainIds: "1"
+                        leaderboard_id: null
+                        source: ""
+                      - id: 13
+                        name: nhdz_13
+                        startTime: 1660060800
+                        endTime: 1660150800
+                        desktopBanner: "https://via.placeholder.com/800x200"
+                        mobileBanner: "https://via.placeholder.com/343x132"
+                        rules: <p>1</p>
+                        termsAndConditions: <p>2</p>
+                        rewardDetails: <p>4</p>
+                        otherDetails: <p>3</p>
+                        isRewardShown: false
+                        enterNowUrl: "https://kyberswap.com/swap"
+                        rewardDistribution:
+                          single:
+                            - rank: 1
+                              amount: "5"
+                              token:
+                                chainId: 1
+                                name: Ethereum
+                                symbol: ETH
+                                address: "0"
+                                logoURI: "https://s2.coinmarketcap.com/static/img/coins/200x200/1027.png"
+                                decimals: 18
+                              byUsd: true
+                          range:
+                            - from: 2
+                              to: 5
+                              amount: "8"
+                              token:
+                                chainId: 1
+                                name: Ethereum
+                                symbol: ETH
+                                address: "0"
+                                logoURI: "https://s2.coinmarketcap.com/static/img/coins/200x200/1027.png"
+                                decimals: 18
+                              byUsd: true
+                          random:
+                            - from: 6
+                              to: 10
+                              amount: "6"
+                              numberOfWinners: 3
+                              token:
+                                chainId: 1
+                                name: Ethereum
+                                symbol: ETH
+                                address: "0"
+                                logoURI: "https://s2.coinmarketcap.com/static/img/coins/200x200/1027.png"
+                                decimals: 18
+                              byUsd: true
+                        eligibleTokens: []
+                        tradingVolumeRequired: 0
+                        campaignState: 2
+                        chainIds: "199"
+                        rewardChainIds: "1"
+                        leaderboard_id: null
+                        source: ""
+                      - id: 14
+                        name: nhdz_14
+                        startTime: 1660060800
+                        endTime: 1660150800
+                        desktopBanner: "https://via.placeholder.com/800x200"
+                        mobileBanner: "https://via.placeholder.com/343x132"
+                        rules: <p>1</p>
+                        termsAndConditions: <p>2</p>
+                        rewardDetails: <p>4</p>
+                        otherDetails: <p>3</p>
+                        isRewardShown: false
+                        enterNowUrl: "https://kyberswap.com/swap"
+                        rewardDistribution:
+                          single:
+                            - rank: 1
+                              amount: "5"
+                              token:
+                                chainId: 1
+                                name: Ethereum
+                                symbol: ETH
+                                address: "0"
+                                logoURI: "https://s2.coinmarketcap.com/static/img/coins/200x200/1027.png"
+                                decimals: 18
+                              byUsd: true
+                          range:
+                            - from: 2
+                              to: 5
+                              amount: "8"
+                              token:
+                                chainId: 1
+                                name: Ethereum
+                                symbol: ETH
+                                address: "0"
+                                logoURI: "https://s2.coinmarketcap.com/static/img/coins/200x200/1027.png"
+                                decimals: 18
+                              byUsd: true
+                          random:
+                            - from: 6
+                              to: 10
+                              amount: "6"
+                              numberOfWinners: 3
+                              token:
+                                chainId: 1
+                                name: Ethereum
+                                symbol: ETH
+                                address: "0"
+                                logoURI: "https://s2.coinmarketcap.com/static/img/coins/200x200/1027.png"
+                                decimals: 18
+                              byUsd: true
+                        eligibleTokens: []
+                        tradingVolumeRequired: 0
+                        campaignState: 2
+                        chainIds: "199"
+                        rewardChainIds: "1"
+                        leaderboard_id: null
+                        source: ""
+                      - id: 15
+                        name: nhdz_15
+                        startTime: 1660060800
+                        endTime: 1660150800
+                        desktopBanner: "https://via.placeholder.com/800x200"
+                        mobileBanner: "https://via.placeholder.com/343x132"
+                        rules: <p>1</p>
+                        termsAndConditions: <p>2</p>
+                        rewardDetails: <p>4</p>
+                        otherDetails: <p>3</p>
+                        isRewardShown: false
+                        enterNowUrl: "https://kyberswap.com/swap"
+                        rewardDistribution:
+                          single:
+                            - rank: 1
+                              amount: "5"
+                              token:
+                                chainId: 1
+                                name: Ethereum
+                                symbol: ETH
+                                address: "0"
+                                logoURI: "https://s2.coinmarketcap.com/static/img/coins/200x200/1027.png"
+                                decimals: 18
+                              byUsd: true
+                          range:
+                            - from: 2
+                              to: 5
+                              amount: "8"
+                              token:
+                                chainId: 1
+                                name: Ethereum
+                                symbol: ETH
+                                address: "0"
+                                logoURI: "https://s2.coinmarketcap.com/static/img/coins/200x200/1027.png"
+                                decimals: 18
+                              byUsd: true
+                          random:
+                            - from: 6
+                              to: 10
+                              amount: "6"
+                              numberOfWinners: 3
+                              token:
+                                chainId: 1
+                                name: Ethereum
+                                symbol: ETH
+                                address: "0"
+                                logoURI: "https://s2.coinmarketcap.com/static/img/coins/200x200/1027.png"
+                                decimals: 18
+                              byUsd: true
+                        eligibleTokens: []
+                        tradingVolumeRequired: 0
+                        campaignState: 1
+                        chainIds: "199"
+                        rewardChainIds: "1"
+                        leaderboard_id: null
+                        source: ""
+                      - id: 16
+                        name: nhdz_16
+                        startTime: 1660060800
+                        endTime: 1660150800
+                        desktopBanner: "https://via.placeholder.com/800x200"
+                        mobileBanner: "https://via.placeholder.com/343x132"
+                        rules: <p>1</p>
+                        termsAndConditions: <p>2</p>
+                        rewardDetails: <p>4</p>
+                        otherDetails: <p>3</p>
+                        isRewardShown: false
+                        enterNowUrl: "https://kyberswap.com/swap"
+                        rewardDistribution:
+                          single:
+                            - rank: 1
+                              amount: "5"
+                              token:
+                                chainId: 1
+                                name: Ethereum
+                                symbol: ETH
+                                address: "0"
+                                logoURI: "https://s2.coinmarketcap.com/static/img/coins/200x200/1027.png"
+                                decimals: 18
+                              byUsd: true
+                          range:
+                            - from: 2
+                              to: 5
+                              amount: "8"
+                              token:
+                                chainId: 1
+                                name: Ethereum
+                                symbol: ETH
+                                address: "0"
+                                logoURI: "https://s2.coinmarketcap.com/static/img/coins/200x200/1027.png"
+                                decimals: 18
+                              byUsd: true
+                          random:
+                            - from: 6
+                              to: 10
+                              amount: "6"
+                              numberOfWinners: 3
+                              token:
+                                chainId: 1
+                                name: Ethereum
+                                symbol: ETH
+                                address: "0"
+                                logoURI: "https://s2.coinmarketcap.com/static/img/coins/200x200/1027.png"
+                                decimals: 18
+                              byUsd: true
+                        eligibleTokens: []
+                        tradingVolumeRequired: 0
+                        campaignState: 0
+                        chainIds: "199"
+                        rewardChainIds: "1"
+                        leaderboard_id: null
+                        source: ""
+                      - id: 17
+                        name: nhdz_9
+                        startTime: 1660112885
+                        endTime: 1660115295
+                        desktopBanner: a
+                        mobileBanner: b
+                        rules: <p>1</p>
+                        termsAndConditions: <p>2</p>
+                        rewardDetails: <p>4</p>
+                        otherDetails: <p>3</p>
+                        isRewardShown: true
+                        enterNowUrl: "https://kyberswap.com/swap"
+                        rewardDistribution:
+                          single:
+                            - rank: 1
+                              amount: "5"
+                              token:
+                                chainId: 4
+                                name: Ethereum
+                                symbol: ETH
+                                address: "0"
+                                logoURI: "https://s2.coinmarketcap.com/static/img/coins/200x200/1027.png"
+                                decimals: 18
+                              byUsd: false
+                          range:
+                            - from: 2
+                              to: 5
+                              amount: "8"
+                              token:
+                                chainId: 4
+                                name: Ethereum
+                                symbol: ETH
+                                address: "0"
+                                logoURI: "https://s2.coinmarketcap.com/static/img/coins/200x200/1027.png"
+                                decimals: 18
+                              byUsd: false
+                          random:
+                            - from: 6
+                              to: 10
+                              amount: "6"
+                              numberOfWinners: 3
+                              token:
+                                chainId: 4
+                                name: Ethereum
+                                symbol: ETH
+                                address: "0"
+                                logoURI: "https://s2.coinmarketcap.com/static/img/coins/200x200/1027.png"
+                                decimals: 18
+                              byUsd: false
+                        eligibleTokens: []
+                        tradingVolumeRequired: 0
+                        campaignState: 0
+                        chainIds: "199"
+                        rewardChainIds: "4"
+                        leaderboard_id: null
+                        source: ""
+                      - id: 18
+                        name: nhdz_9
+                        startTime: 1660112885
+                        endTime: 1660115295
+                        desktopBanner: a
+                        mobileBanner: b
+                        rules: <p>1</p>
+                        termsAndConditions: <p>2</p>
+                        rewardDetails: <p>4</p>
+                        otherDetails: <p>3</p>
+                        isRewardShown: true
+                        enterNowUrl: "https://kyberswap.com/swap"
+                        rewardDistribution:
+                          single:
+                            - rank: 1
+                              amount: "5"
+                              token:
+                                chainId: 4
+                                name: Ethereum
+                                symbol: ETH
+                                address: "0"
+                                logoURI: "https://s2.coinmarketcap.com/static/img/coins/200x200/1027.png"
+                                decimals: 18
+                              byUsd: false
+                          range:
+                            - from: 2
+                              to: 5
+                              amount: "8"
+                              token:
+                                chainId: 4
+                                name: Ethereum
+                                symbol: ETH
+                                address: "0"
+                                logoURI: "https://s2.coinmarketcap.com/static/img/coins/200x200/1027.png"
+                                decimals: 18
+                              byUsd: false
+                          random:
+                            - from: 6
+                              to: 10
+                              amount: "6"
+                              numberOfWinners: 3
+                              token:
+                                chainId: 4
+                                name: Ethereum
+                                symbol: ETH
+                                address: "0"
+                                logoURI: "https://s2.coinmarketcap.com/static/img/coins/200x200/1027.png"
+                                decimals: 18
+                              byUsd: false
+                        eligibleTokens:
+                          - chainId: 199
+                            name: Kyber Network Crystal
+                            symbol: KNC_b
+                            address: "0x18fA72e0EE4C580a129b0CE5bD0694d716C7443E"
+                            logoURI: "https://raw.githubusercontent.com/KyberNetwork/dmm-interface/main/src/assets/images/KNC.svg"
+                            decimals: 18
+                        tradingVolumeRequired: 0
+                        campaignState: 0
+                        chainIds: "199"
+                        rewardChainIds: "4"
+                        leaderboard_id: null
+                        source: ""
+                properties:
+                  code:
+                    type: integer
+                  message:
+                    type: string
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                        name:
+                          type: string
+                        startTime:
+                          type: integer
+                        endTime:
+                          type: integer
+                        desktopBanner:
+                          type: string
+                        mobileBanner:
+                          type: string
+                        rules:
+                          type: string
+                        termsAndConditions:
+                          type: string
+                        rewardDetails:
+                          type: string
+                        otherDetails:
+                          type: string
+                        isRewardShown:
+                          type: boolean
+                        enterNowUrl:
+                          type: string
+                        rewardDistribution:
+                          type: object
+                          properties:
+                            single:
+                              type: array
+                              items:
+                                type: object
+                                properties:
+                                  rank:
+                                    type: integer
+                                  amount:
+                                    type: string
+                                  token:
+                                    type: object
+                                    properties:
+                                      chainId:
+                                        type: integer
+                                      name:
+                                        type: string
+                                      symbol:
+                                        type: string
+                                      address:
+                                        type: string
+                                      logoURI:
+                                        type: string
+                                      decimals:
+                                        type: integer
+                                  byUsd:
+                                    type: boolean
+                            range:
+                              type: array
+                              items:
+                                type: object
+                                properties:
+                                  from:
+                                    type: integer
+                                  to:
+                                    type: integer
+                                  amount:
+                                    type: string
+                                  token:
+                                    type: object
+                                    properties:
+                                      chainId:
+                                        type: integer
+                                      name:
+                                        type: string
+                                      symbol:
+                                        type: string
+                                      address:
+                                        type: string
+                                      logoURI:
+                                        type: string
+                                      decimals:
+                                        type: integer
+                                  byUsd:
+                                    type: boolean
+                            random:
+                              type: array
+                              items:
+                                type: object
+                                properties:
+                                  from:
+                                    type: integer
+                                  to:
+                                    type: integer
+                                  amount:
+                                    type: string
+                                  numberOfWinners:
+                                    type: integer
+                                  token:
+                                    type: object
+                                    properties:
+                                      chainId:
+                                        type: integer
+                                      name:
+                                        type: string
+                                      symbol:
+                                        type: string
+                                      address:
+                                        type: string
+                                      logoURI:
+                                        type: string
+                                      decimals:
+                                        type: integer
+                                  byUsd:
+                                    type: boolean
+                        eligibleTokens:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              chainId:
+                                type: integer
+                              name:
+                                type: string
+                              symbol:
+                                type: string
+                              address:
+                                type: string
+                              logoURI:
+                                type: string
+                              decimals:
+                                type: integer
+                        tradingVolumeRequired:
+                          type: integer
+                        campaignState:
+                          type: integer
+                        chainIds:
+                          type: string
+                        rewardChainIds:
+                          type: string
+              examples:
+                example-1:
+                  value:
+                    code: 0
+                    message: Get campaigns successfully
+                    data:
+                      - id: 18
+                        name: nhdz_9
+                        startTime: 1660112885
+                        endTime: 1660115295
+                        desktopBanner: a
+                        mobileBanner: b
+                        rules: <p>1</p>
+                        termsAndConditions: <p>2</p>
+                        rewardDetails: <p>4</p>
+                        otherDetails: <p>3</p>
+                        isRewardShown: true
+                        enterNowUrl: "https://kyberswap.com/swap"
+                        rewardDistribution:
+                          single:
+                            - rank: 1
+                              amount: "5"
+                              token:
+                                chainId: 4
+                                name: Ethereum
+                                symbol: ETH
+                                address: "0"
+                                logoURI: "https://s2.coinmarketcap.com/static/img/coins/200x200/1027.png"
+                                decimals: 18
+                              byUsd: false
+                          range:
+                            - from: 2
+                              to: 5
+                              amount: "8"
+                              token:
+                                chainId: 4
+                                name: Ethereum
+                                symbol: ETH
+                                address: "0"
+                                logoURI: "https://s2.coinmarketcap.com/static/img/coins/200x200/1027.png"
+                                decimals: 18
+                              byUsd: false
+                          random:
+                            - from: 6
+                              to: 10
+                              amount: "6"
+                              numberOfWinners: 3
+                              token:
+                                chainId: 4
+                                name: Ethereum
+                                symbol: ETH
+                                address: "0"
+                                logoURI: "https://s2.coinmarketcap.com/static/img/coins/200x200/1027.png"
+                                decimals: 18
+                              byUsd: false
+                        eligibleTokens:
+                          - chainId: 199
+                            name: Kyber Network Crystal
+                            symbol: KNC_b
+                            address: "0x18fA72e0EE4C580a129b0CE5bD0694d716C7443E"
+                            logoURI: "https://raw.githubusercontent.com/KyberNetwork/dmm-interface/main/src/assets/images/KNC.svg"
+                            decimals: 18
+                        tradingVolumeRequired: 0
+                        campaignState: 0
+                        chainIds: "199"
+                        rewardChainIds: "4"
+        "400":
+          description: ""
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                  message:
+                    type: string
+                x-examples:
+                  example-1:
+                    code: 400001
+                    message: limit is not an uint16
+              examples: {}
+      operationId: get-campaigns
+      description: ""
+      x-internal: false
+      parameters:
+        - schema:
+            type: integer
+            maximum: 65535
+            minimum: 1
+          in: query
+          name: limit
+          required: true
+        - schema:
+            type: integer
+            minimum: 0
+          in: query
+          name: offset
+          required: true
+    post:
+      summary: Create a campaign
+      operationId: post-campaigns
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                  message:
+                    type: string
+                  data:
+                    type: object
+                    properties:
+                      ID:
+                        type: integer
+                      CreatedAt:
+                        type: string
+                      UpdatedAt:
+                        type: string
+                      DeletedAt:
+                        type: "null"
+                      StartTime:
+                        type: string
+                      EndTime:
+                        type: string
+                      CampaignName:
+                        type: string
+                      DesktopBanner:
+                        type: string
+                      MobileBanner:
+                        type: string
+                      Rules:
+                        type: string
+                      TermsAndConditions:
+                        type: string
+                      RewardDetails:
+                        type: string
+                      OtherDetails:
+                        type: string
+                      IsRewardShown:
+                        type: boolean
+                      EnterNowURL:
+                        type: string
+                      CampaignState:
+                        type: integer
+                      ChainIds:
+                        type: string
+                      RewardChainIds:
+                        type: string
+                      TradingVolumeRequired:
+                        type: integer
+                      Source:
+                        type: string
+                      EligibleTokens:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            ID:
+                              type: integer
+                            CreatedAt:
+                              type: string
+                            UpdatedAt:
+                              type: string
+                            DeletedAt:
+                              type: "null"
+                            ChainId:
+                              type: integer
+                            TokenAddress:
+                              type: string
+                            TokenName:
+                              type: string
+                            Symbol:
+                              type: string
+                            LogoURI:
+                              type: string
+                            CampaignID:
+                              type: integer
+                            TokenDecimals:
+                              type: integer
+                      SingleRankRewards:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            ID:
+                              type: integer
+                            CreatedAt:
+                              type: string
+                            UpdatedAt:
+                              type: string
+                            DeletedAt:
+                              type: "null"
+                            RankAt:
+                              type: integer
+                            Amount:
+                              type: string
+                            Token:
+                              type: string
+                            CampaignID:
+                              type: integer
+                            ByUSD:
+                              type: boolean
+                      RangeRankRewards:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            ID:
+                              type: integer
+                            CreatedAt:
+                              type: string
+                            UpdatedAt:
+                              type: string
+                            DeletedAt:
+                              type: "null"
+                            FromRank:
+                              type: integer
+                            ToRank:
+                              type: integer
+                            Amount:
+                              type: string
+                            Token:
+                              type: string
+                            CampaignID:
+                              type: integer
+                            ByUSD:
+                              type: boolean
+                      RandomRankRewards:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            ID:
+                              type: integer
+                            CreatedAt:
+                              type: string
+                            UpdatedAt:
+                              type: string
+                            DeletedAt:
+                              type: "null"
+                            FromRank:
+                              type: integer
+                            ToRank:
+                              type: integer
+                            Amount:
+                              type: string
+                            Token:
+                              type: string
+                            NumberOfWinners:
+                              type: integer
+                            CampaignID:
+                              type: integer
+                            ByUSD:
+                              type: boolean
+                      LeaderboardId:
+                        type: "null"
+                x-examples:
+                  example-1:
+                    code: 0
+                    message: Create campaign successfully
+                    data:
+                      ID: 11
+                      CreatedAt: "2022-08-16T11:19:01.837528+07:00"
+                      UpdatedAt: "2022-08-16T11:19:01.837528+07:00"
+                      DeletedAt: null
+                      StartTime: "2022-08-10T13:28:05+07:00"
+                      EndTime: "2022-08-10T14:08:15+07:00"
+                      CampaignName: nhdz_11
+                      DesktopBanner: a
+                      MobileBanner: b
+                      Rules: <p>1</p>
+                      TermsAndConditions: <p>2</p>
+                      RewardDetails: <p>4</p>
+                      OtherDetails: <p>3</p>
+                      IsRewardShown: true
+                      EnterNowURL: "https://kyberswap.com/swap"
+                      CampaignState: 0
+                      ChainIds: "1,56,199"
+                      RewardChainIds: "4"
+                      TradingVolumeRequired: 0
+                      Source: ""
+                      EligibleTokens:
+                        - ID: 1
+                          CreatedAt: "2022-08-16T11:19:01.841535+07:00"
+                          UpdatedAt: "2022-08-16T11:19:01.841535+07:00"
+                          DeletedAt: null
+                          ChainId: 199
+                          TokenAddress: "0x18fA72e0EE4C580a129b0CE5bD0694d716C7443E"
+                          TokenName: Kyber Network Crystal
+                          Symbol: KNC_b
+                          LogoURI: "https://raw.githubusercontent.com/KyberNetwork/dmm-interface/main/src/assets/images/KNC.svg"
+                          CampaignID: 11
+                          TokenDecimals: 18
+                      SingleRankRewards:
+                        - ID: 20
+                          CreatedAt: "2022-08-16T11:19:01.846468+07:00"
+                          UpdatedAt: "2022-08-16T11:19:01.846468+07:00"
+                          DeletedAt: null
+                          RankAt: 1
+                          Amount: "5"
+                          Token: "0"
+                          CampaignID: 11
+                          ByUSD: false
+                      RangeRankRewards:
+                        - ID: 6
+                          CreatedAt: "2022-08-16T11:19:01.849605+07:00"
+                          UpdatedAt: "2022-08-16T11:19:01.849605+07:00"
+                          DeletedAt: null
+                          FromRank: 2
+                          ToRank: 5
+                          Amount: "8"
+                          Token: "0"
+                          CampaignID: 11
+                          ByUSD: false
+                      RandomRankRewards:
+                        - ID: 8
+                          CreatedAt: "2022-08-16T11:19:01.852745+07:00"
+                          UpdatedAt: "2022-08-16T11:19:01.852745+07:00"
+                          DeletedAt: null
+                          FromRank: 6
+                          ToRank: 10
+                          Amount: "6"
+                          Token: "0"
+                          NumberOfWinners: 3
+                          CampaignID: 11
+                          ByUSD: false
+                      LeaderboardId: null
+              examples:
+                example-1:
+                  value:
+                    code: 0
+                    message: Create campaign successfully
+                    data:
+                      ID: 11
+                      CreatedAt: "2022-08-16T11:19:01.837528+07:00"
+                      UpdatedAt: "2022-08-16T11:19:01.837528+07:00"
+                      DeletedAt: null
+                      StartTime: "2022-08-10T13:28:05+07:00"
+                      EndTime: "2022-08-10T14:08:15+07:00"
+                      CampaignName: nhdz_11
+                      DesktopBanner: a
+                      MobileBanner: b
+                      Rules: <p>1</p>
+                      TermsAndConditions: <p>2</p>
+                      RewardDetails: <p>4</p>
+                      OtherDetails: <p>3</p>
+                      IsRewardShown: true
+                      EnterNowURL: "https://kyberswap.com/swap"
+                      CampaignState: 0
+                      ChainIds: "1,56,199"
+                      RewardChainIds: "4"
+                      TradingVolumeRequired: 0
+                      Source: ""
+                      EligibleTokens:
+                        - ID: 1
+                          CreatedAt: "2022-08-16T11:19:01.841535+07:00"
+                          UpdatedAt: "2022-08-16T11:19:01.841535+07:00"
+                          DeletedAt: null
+                          ChainId: 199
+                          TokenAddress: "0x18fA72e0EE4C580a129b0CE5bD0694d716C7443E"
+                          TokenName: Kyber Network Crystal
+                          Symbol: KNC_b
+                          LogoURI: "https://raw.githubusercontent.com/KyberNetwork/dmm-interface/main/src/assets/images/KNC.svg"
+                          CampaignID: 11
+                          TokenDecimals: 18
+                      SingleRankRewards:
+                        - ID: 20
+                          CreatedAt: "2022-08-16T11:19:01.846468+07:00"
+                          UpdatedAt: "2022-08-16T11:19:01.846468+07:00"
+                          DeletedAt: null
+                          RankAt: 1
+                          Amount: "5"
+                          Token: "0"
+                          CampaignID: 11
+                          ByUSD: false
+                      RangeRankRewards:
+                        - ID: 6
+                          CreatedAt: "2022-08-16T11:19:01.849605+07:00"
+                          UpdatedAt: "2022-08-16T11:19:01.849605+07:00"
+                          DeletedAt: null
+                          FromRank: 2
+                          ToRank: 5
+                          Amount: "8"
+                          Token: "0"
+                          CampaignID: 11
+                          ByUSD: false
+                      RandomRankRewards:
+                        - ID: 8
+                          CreatedAt: "2022-08-16T11:19:01.852745+07:00"
+                          UpdatedAt: "2022-08-16T11:19:01.852745+07:00"
+                          DeletedAt: null
+                          FromRank: 6
+                          ToRank: 10
+                          Amount: "6"
+                          Token: "0"
+                          NumberOfWinners: 3
+                          CampaignID: 11
+                          ByUSD: false
+                      LeaderboardId: null
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                startTime:
+                  type: integer
+                endTime:
+                  type: integer
+                desktopBanner:
+                  type: string
+                mobileBanner:
+                  type: string
+                rules:
+                  type: string
+                termsAndConditions:
+                  type: string
+                otherDetails:
+                  type: string
+                rewardDetails:
+                  type: string
+                isRewardShown:
+                  type: boolean
+                rewardDistribution:
+                  type: object
+                  properties:
+                    single:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          rank:
+                            type: integer
+                          amount:
+                            type: string
+                          token:
+                            type: string
+                          byUsd:
+                            type: boolean
+                    range:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          from:
+                            type: integer
+                          to:
+                            type: integer
+                          amount:
+                            type: string
+                          token:
+                            type: string
+                          byUsd:
+                            type: boolean
+                    random:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          from:
+                            type: integer
+                          to:
+                            type: integer
+                          numberOfWinners:
+                            type: integer
+                          amount:
+                            type: string
+                          token:
+                            type: string
+                          byUsd:
+                            type: boolean
+                enterNowUrl:
+                  type: string
+                chainIds:
+                  type: string
+                rewardChainIds:
+                  type: string
+                eligibleTokens:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      chainId:
+                        type: integer
+                      address:
+                        type: string
+                      symbol:
+                        type: string
+                      name:
+                        type: string
+                      decimals:
+                        type: integer
+                      logoURI:
+                        type: string
+                tradingVolumeRequired:
+                  type: integer
+                numberOfTradesRequired:
+                  type: integer
+                countPointBy:
+                  type: string
+              x-examples:
+                example-1:
+                  name: nhdz_11
+                  startTime: 1660112885
+                  endTime: 1660115295
+                  desktopBanner: a
+                  mobileBanner: b
+                  rules: <p>1</p>
+                  termsAndConditions: <p>2</p>
+                  otherDetails: <p>3</p>
+                  rewardDetails: <p>4</p>
+                  isRewardShown: true
+                  rewardDistribution:
+                    single:
+                      - rank: 1
+                        amount: "5"
+                        token: "0"
+                        byUsd: false
+                    range:
+                      - from: 2
+                        to: 5
+                        amount: "8"
+                        token: "0"
+                        byUsd: false
+                    random:
+                      - from: 6
+                        to: 10
+                        numberOfWinners: 3
+                        amount: "6"
+                        token: "0"
+                        byUsd: false
+                  enterNowUrl: "https://kyberswap.com/swap"
+                  chainIds: "1,56,199"
+                  rewardChainIds: "4"
+                  eligibleTokens:
+                    - chainId: 199
+                      address: "0x18fA72e0EE4C580a129b0CE5bD0694d716C7443E"
+                      symbol: KNC_b
+                      name: Kyber Network Crystal
+                      decimals: 18
+                      logoURI: "https://raw.githubusercontent.com/KyberNetwork/dmm-interface/main/src/assets/images/KNC.svg"
+                  tradingVolumeRequired: 0
+                  numberOfTradesRequired: 0
+                  countPointBy: Trading Volume
+            examples:
+              example-1:
+                value:
+                  name: nhdz_11
+                  startTime: 1660112885
+                  endTime: 1660115295
+                  desktopBanner: a
+                  mobileBanner: b
+                  rules: <p>1</p>
+                  termsAndConditions: <p>2</p>
+                  otherDetails: <p>3</p>
+                  rewardDetails: <p>4</p>
+                  isRewardShown: true
+                  rewardDistribution:
+                    single:
+                      - rank: 1
+                        amount: "5"
+                        token: "0"
+                        byUsd: false
+                    range:
+                      - from: 2
+                        to: 5
+                        amount: "8"
+                        token: "0"
+                        byUsd: false
+                    random:
+                      - from: 6
+                        to: 10
+                        numberOfWinners: 3
+                        amount: "6"
+                        token: "0"
+                        byUsd: false
+                  enterNowUrl: "https://kyberswap.com/swap"
+                  chainIds: "1,56,199"
+                  rewardChainIds: "4"
+                  eligibleTokens:
+                    - chainId: 199
+                      address: "0x18fA72e0EE4C580a129b0CE5bD0694d716C7443E"
+                      symbol: KNC_b
+                      name: Kyber Network Crystal
+                      decimals: 18
+                      logoURI: "https://raw.githubusercontent.com/KyberNetwork/dmm-interface/main/src/assets/images/KNC.svg"
+                  tradingVolumeRequired: 0
+                  numberOfTradesRequired: 0
+                  countPointBy: Trading Volume
+  "/campaigns/{id}/leaderboard":
+    get:
+      summary: Get leaderboard
+      tags: []
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                  message:
+                    type: string
+                  data:
+                    type: object
+                    properties:
+                      campaignId:
+                        type: integer
+                      numberOfParticipants:
+                        type: integer
+                      finalizedAt:
+                        type: integer
+                      distributedRewardsAt:
+                        type: integer
+                      userRank:
+                        type: integer
+                      rankings:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            userAddress:
+                              type: string
+                            totalPoint:
+                              type: string
+                            rankNo:
+                              type: integer
+                            rewardAmount:
+                              type: string
+                            rewardAmountUSD:
+                              type: string
+                            byUSD:
+                              type: boolean
+                            token:
+                              type: object
+                              properties:
+                                chainId:
+                                  type: integer
+                                name:
+                                  type: string
+                                symbol:
+                                  type: string
+                                address:
+                                  type: string
+                                logoURI:
+                                  type: string
+                                decimals:
+                                  type: integer
+                      rewards:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            RewardAmount:
+                              type: string
+                            Ref:
+                              type: string
+                            Claimed:
+                              type: boolean
+                            Token:
+                              type: object
+                              properties:
+                                chainId:
+                                  type: integer
+                                name:
+                                  type: string
+                                symbol:
+                                  type: string
+                                address:
+                                  type: string
+                                logoURI:
+                                  type: string
+                                decimals:
+                                  type: integer
+                x-examples:
+                  example-1:
+                    code: 0
+                    message: Get leaderboard successfully
+                    data:
+                      campaignId: 1
+                      numberOfParticipants: 604
+                      finalizedAt: 1660557285
+                      distributedRewardsAt: 1660557292
+                      userRank: 1
+                      rankings:
+                        - userAddress: 0x5577xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx3d57
+                          totalPoint: "13153268.9"
+                          rankNo: 1
+                          rewardAmount: "525477783778004"
+                          rewardAmountUSD: "1"
+                          byUSD: true
+                          token:
+                            chainId: 1
+                            name: Ethereum
+                            symbol: ETH
+                            address: "0"
+                            logoURI: "https://s2.coinmarketcap.com/static/img/coins/200x200/1027.png"
+                            decimals: 18
+                        - userAddress: 0x5f0fxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx4b39
+                          totalPoint: "47607.75"
+                          rankNo: 2
+                          rewardAmount: ""
+                          rewardAmountUSD: ""
+                          byUSD: false
+                          token:
+                            chainId: 0
+                            name: ""
+                            symbol: ""
+                            address: ""
+                            logoURI: ""
+                            decimals: 0
+                      rewards:
+                        - RewardAmount: "525477783778004"
+                          Ref: campaign-1-rank-1-1660557285
+                          Claimed: false
+                          Token:
+                            chainId: 1
+                            name: Ethereum
+                            symbol: ETH
+                            address: "0"
+                            logoURI: "https://s2.coinmarketcap.com/static/img/coins/200x200/1027.png"
+                            decimals: 18
+              examples:
+                example-1:
+                  value:
+                    code: 0
+                    message: Get leaderboard successfully
+                    data:
+                      campaignId: 1
+                      numberOfParticipants: 604
+                      finalizedAt: 1660557285
+                      distributedRewardsAt: 1660557292
+                      userRank: 1
+                      rankings:
+                        - userAddress: 0x5577xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx3d57
+                          totalPoint: "13153268.9"
+                          rankNo: 1
+                          rewardAmount: "525477783778004"
+                          rewardAmountUSD: "1"
+                          byUSD: true
+                          token:
+                            chainId: 1
+                            name: Ethereum
+                            symbol: ETH
+                            address: "0"
+                            logoURI: "https://s2.coinmarketcap.com/static/img/coins/200x200/1027.png"
+                            decimals: 18
+                        - userAddress: 0x5f0fxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx4b39
+                          totalPoint: "47607.75"
+                          rankNo: 2
+                          rewardAmount: ""
+                          rewardAmountUSD: ""
+                          byUSD: false
+                          token:
+                            chainId: 0
+                            name: ""
+                            symbol: ""
+                            address: ""
+                            logoURI: ""
+                            decimals: 0
+                      rewards:
+                        - RewardAmount: "525477783778004"
+                          Ref: campaign-1-rank-1-1660557285
+                          Claimed: false
+                          Token:
+                            chainId: 1
+                            name: Ethereum
+                            symbol: ETH
+                            address: "0"
+                            logoURI: "https://s2.coinmarketcap.com/static/img/coins/200x200/1027.png"
+                            decimals: 18
+      operationId: get-campaigns-id-leaderboard
+      description: ""
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: userAddress
+          description: for getting reward
+        - schema:
+            type: string
+          in: query
+          name: lookupAddress
+          description: for searching
+        - schema:
+            type: integer
+          in: query
+          name: pageNumber
+        - schema:
+            type: integer
+          in: query
+          name: pageSize
+    parameters:
+      - schema:
+          type: number
+        name: id
+        in: path
+        required: true
+  "/campaigns/{id}/lucky-winners":
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+    get:
+      summary: Get lucky winners
+      tags: []
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                  message:
+                    type: string
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        userAddress:
+                          type: string
+                        rewardAmount:
+                          type: string
+                        token:
+                          type: object
+                          properties:
+                            chainId:
+                              type: integer
+                            name:
+                              type: string
+                            symbol:
+                              type: string
+                            address:
+                              type: string
+                            logoURI:
+                              type: string
+                            decimals:
+                              type: integer
+                x-examples:
+                  example-1:
+                    code: 0
+                    message: Get lucky winners successfully
+                    data:
+                      - userAddress: 0x5577xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx3d57
+                        rewardAmount: "535244828783202"
+                        token:
+                          chainId: 1
+                          name: Ethereum
+                          symbol: ETH
+                          address: "0"
+                          logoURI: "https://s2.coinmarketcap.com/static/img/coins/200x200/1027.png"
+                          decimals: 18
+              examples:
+                example-1:
+                  value:
+                    code: 0
+                    message: Get lucky winners successfully
+                    data:
+                      - userAddress: 0x5577xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx3d57
+                        rewardAmount: "535244828783202"
+                        token:
+                          chainId: 1
+                          name: Ethereum
+                          symbol: ETH
+                          address: "0"
+                          logoURI: "https://s2.coinmarketcap.com/static/img/coins/200x200/1027.png"
+                          decimals: 18
+      operationId: get-campaigns-id-lucky-winner
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: lookupAddress
+        - schema:
+            type: string
+          in: query
+          name: pageNumber
+        - schema:
+            type: string
+          in: query
+          name: pageSize
+  "/campaigns/{id}/proofs":
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+    get:
+      summary: Get proofs
+      tags: []
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                  message:
+                    type: string
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                        chainId:
+                          type: string
+                        refId:
+                          type: integer
+                        campaignId:
+                          type: integer
+                        txPoint:
+                          type: string
+                        pair:
+                          type: string
+                        time:
+                          type: string
+                        userAddress:
+                          type: string
+                        tx:
+                          type: string
+                x-examples:
+                  example-1:
+                    code: 0
+                    message: Get proofs successfully
+                    data:
+                      - id: 49912
+                        chainId: "56"
+                        refId: 391343
+                        campaignId: 5
+                        txPoint: "13153268.9"
+                        pair: 0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee_0x6d6521283cd3fd0188fe0408e700a5790a0f6c61
+                        time: "2022-08-15T05:05:25Z"
+                        userAddress: "0x55772af1060e1cc9d3e52bda141d32cb25643d57"
+                        tx: "0x1c7717bb0faa88969bb5905ac5f6d71bff5825f9f8939663b2e862f54a979e7d"
+              examples:
+                example-1:
+                  value:
+                    code: 0
+                    message: Get proofs successfully
+                    data:
+                      - id: 49912
+                        chainId: "56"
+                        refId: 391343
+                        campaignId: 5
+                        txPoint: "13153268.9"
+                        pair: 0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee_0x6d6521283cd3fd0188fe0408e700a5790a0f6c61
+                        time: "2022-08-15T05:05:25Z"
+                        userAddress: "0x55772af1060e1cc9d3e52bda141d32cb25643d57"
+                        tx: "0x1c7717bb0faa88969bb5905ac5f6d71bff5825f9f8939663b2e862f54a979e7d"
+      operationId: get-campaigns-id-proofs
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: userAddress
+        - schema:
+            type: integer
+          in: query
+          name: limit
+        - schema:
+            type: integer
+          in: query
+          name: offset
+  "/campaigns/{id}":
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+    put:
+      summary: Update a campaign
+      operationId: put-campaigns-id
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                  message:
+                    type: string
+                  data:
+                    type: object
+                    properties:
+                      ID:
+                        type: integer
+                      CreatedAt:
+                        type: string
+                      UpdatedAt:
+                        type: string
+                      DeletedAt:
+                        type: "null"
+                      StartTime:
+                        type: string
+                      EndTime:
+                        type: string
+                      CampaignName:
+                        type: string
+                      DesktopBanner:
+                        type: string
+                      MobileBanner:
+                        type: string
+                      Rules:
+                        type: string
+                      TermsAndConditions:
+                        type: string
+                      RewardDetails:
+                        type: string
+                      OtherDetails:
+                        type: string
+                      IsRewardShown:
+                        type: boolean
+                      EnterNowURL:
+                        type: string
+                      CampaignState:
+                        type: integer
+                      ChainIds:
+                        type: string
+                      RewardChainIds:
+                        type: string
+                      TradingVolumeRequired:
+                        type: integer
+                      Source:
+                        type: string
+                      EligibleTokens:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            ID:
+                              type: integer
+                            CreatedAt:
+                              type: string
+                            UpdatedAt:
+                              type: string
+                            DeletedAt:
+                              type: "null"
+                            ChainId:
+                              type: integer
+                            TokenAddress:
+                              type: string
+                            TokenName:
+                              type: string
+                            Symbol:
+                              type: string
+                            LogoURI:
+                              type: string
+                            CampaignID:
+                              type: integer
+                            TokenDecimals:
+                              type: integer
+                      SingleRankRewards:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            ID:
+                              type: integer
+                            CreatedAt:
+                              type: string
+                            UpdatedAt:
+                              type: string
+                            DeletedAt:
+                              type: "null"
+                            RankAt:
+                              type: integer
+                            Amount:
+                              type: string
+                            Token:
+                              type: string
+                            CampaignID:
+                              type: integer
+                            ByUSD:
+                              type: boolean
+                      RangeRankRewards:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            ID:
+                              type: integer
+                            CreatedAt:
+                              type: string
+                            UpdatedAt:
+                              type: string
+                            DeletedAt:
+                              type: "null"
+                            FromRank:
+                              type: integer
+                            ToRank:
+                              type: integer
+                            Amount:
+                              type: string
+                            Token:
+                              type: string
+                            CampaignID:
+                              type: integer
+                            ByUSD:
+                              type: boolean
+                      RandomRankRewards:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            ID:
+                              type: integer
+                            CreatedAt:
+                              type: string
+                            UpdatedAt:
+                              type: string
+                            DeletedAt:
+                              type: "null"
+                            FromRank:
+                              type: integer
+                            ToRank:
+                              type: integer
+                            Amount:
+                              type: string
+                            Token:
+                              type: string
+                            NumberOfWinners:
+                              type: integer
+                            CampaignID:
+                              type: integer
+                            ByUSD:
+                              type: boolean
+                      LeaderboardId:
+                        type: "null"
+                x-examples:
+                  example-1:
+                    code: 0
+                    message: Create campaign successfully
+                    data:
+                      ID: 11
+                      CreatedAt: "2022-08-16T11:19:01.837528+07:00"
+                      UpdatedAt: "2022-08-16T11:19:01.837528+07:00"
+                      DeletedAt: null
+                      StartTime: "2022-08-10T13:28:05+07:00"
+                      EndTime: "2022-08-10T14:08:15+07:00"
+                      CampaignName: nhdz_11
+                      DesktopBanner: a
+                      MobileBanner: b
+                      Rules: <p>1</p>
+                      TermsAndConditions: <p>2</p>
+                      RewardDetails: <p>4</p>
+                      OtherDetails: <p>3</p>
+                      IsRewardShown: true
+                      EnterNowURL: "https://kyberswap.com/swap"
+                      CampaignState: 0
+                      ChainIds: "1,56,199"
+                      RewardChainIds: "4"
+                      TradingVolumeRequired: 0
+                      Source: ""
+                      EligibleTokens:
+                        - ID: 1
+                          CreatedAt: "2022-08-16T11:19:01.841535+07:00"
+                          UpdatedAt: "2022-08-16T11:19:01.841535+07:00"
+                          DeletedAt: null
+                          ChainId: 199
+                          TokenAddress: "0x18fA72e0EE4C580a129b0CE5bD0694d716C7443E"
+                          TokenName: Kyber Network Crystal
+                          Symbol: KNC_b
+                          LogoURI: "https://raw.githubusercontent.com/KyberNetwork/dmm-interface/main/src/assets/images/KNC.svg"
+                          CampaignID: 11
+                          TokenDecimals: 18
+                      SingleRankRewards:
+                        - ID: 20
+                          CreatedAt: "2022-08-16T11:19:01.846468+07:00"
+                          UpdatedAt: "2022-08-16T11:19:01.846468+07:00"
+                          DeletedAt: null
+                          RankAt: 1
+                          Amount: "5"
+                          Token: "0"
+                          CampaignID: 11
+                          ByUSD: false
+                      RangeRankRewards:
+                        - ID: 6
+                          CreatedAt: "2022-08-16T11:19:01.849605+07:00"
+                          UpdatedAt: "2022-08-16T11:19:01.849605+07:00"
+                          DeletedAt: null
+                          FromRank: 2
+                          ToRank: 5
+                          Amount: "8"
+                          Token: "0"
+                          CampaignID: 11
+                          ByUSD: false
+                      RandomRankRewards:
+                        - ID: 8
+                          CreatedAt: "2022-08-16T11:19:01.852745+07:00"
+                          UpdatedAt: "2022-08-16T11:19:01.852745+07:00"
+                          DeletedAt: null
+                          FromRank: 6
+                          ToRank: 10
+                          Amount: "6"
+                          Token: "0"
+                          NumberOfWinners: 3
+                          CampaignID: 11
+                          ByUSD: false
+                      LeaderboardId: null
+              examples:
+                example-1:
+                  value:
+                    code: 0
+                    message: Create campaign successfully
+                    data:
+                      ID: 11
+                      CreatedAt: "2022-08-16T11:19:01.837528+07:00"
+                      UpdatedAt: "2022-08-16T11:19:01.837528+07:00"
+                      DeletedAt: null
+                      StartTime: "2022-08-10T13:28:05+07:00"
+                      EndTime: "2022-08-10T14:08:15+07:00"
+                      CampaignName: nhdz_11
+                      DesktopBanner: a
+                      MobileBanner: b
+                      Rules: <p>1</p>
+                      TermsAndConditions: <p>2</p>
+                      RewardDetails: <p>4</p>
+                      OtherDetails: <p>3</p>
+                      IsRewardShown: true
+                      EnterNowURL: "https://kyberswap.com/swap"
+                      CampaignState: 0
+                      ChainIds: "1,56,199"
+                      RewardChainIds: "4"
+                      TradingVolumeRequired: 0
+                      Source: ""
+                      EligibleTokens:
+                        - ID: 1
+                          CreatedAt: "2022-08-16T11:19:01.841535+07:00"
+                          UpdatedAt: "2022-08-16T11:19:01.841535+07:00"
+                          DeletedAt: null
+                          ChainId: 199
+                          TokenAddress: "0x18fA72e0EE4C580a129b0CE5bD0694d716C7443E"
+                          TokenName: Kyber Network Crystal
+                          Symbol: KNC_b
+                          LogoURI: "https://raw.githubusercontent.com/KyberNetwork/dmm-interface/main/src/assets/images/KNC.svg"
+                          CampaignID: 11
+                          TokenDecimals: 18
+                      SingleRankRewards:
+                        - ID: 20
+                          CreatedAt: "2022-08-16T11:19:01.846468+07:00"
+                          UpdatedAt: "2022-08-16T11:19:01.846468+07:00"
+                          DeletedAt: null
+                          RankAt: 1
+                          Amount: "5"
+                          Token: "0"
+                          CampaignID: 11
+                          ByUSD: false
+                      RangeRankRewards:
+                        - ID: 6
+                          CreatedAt: "2022-08-16T11:19:01.849605+07:00"
+                          UpdatedAt: "2022-08-16T11:19:01.849605+07:00"
+                          DeletedAt: null
+                          FromRank: 2
+                          ToRank: 5
+                          Amount: "8"
+                          Token: "0"
+                          CampaignID: 11
+                          ByUSD: false
+                      RandomRankRewards:
+                        - ID: 8
+                          CreatedAt: "2022-08-16T11:19:01.852745+07:00"
+                          UpdatedAt: "2022-08-16T11:19:01.852745+07:00"
+                          DeletedAt: null
+                          FromRank: 6
+                          ToRank: 10
+                          Amount: "6"
+                          Token: "0"
+                          NumberOfWinners: 3
+                          CampaignID: 11
+                          ByUSD: false
+                      LeaderboardId: null
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                startTime:
+                  type: integer
+                endTime:
+                  type: integer
+                desktopBanner:
+                  type: string
+                mobileBanner:
+                  type: string
+                rules:
+                  type: string
+                termsAndConditions:
+                  type: string
+                otherDetails:
+                  type: string
+                rewardDetails:
+                  type: string
+                isRewardShown:
+                  type: boolean
+                rewardDistribution:
+                  type: object
+                  properties:
+                    single:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          rank:
+                            type: integer
+                          amount:
+                            type: string
+                          token:
+                            type: string
+                          byUsd:
+                            type: boolean
+                    range:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          from:
+                            type: integer
+                          to:
+                            type: integer
+                          amount:
+                            type: string
+                          token:
+                            type: string
+                          byUsd:
+                            type: boolean
+                    random:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          from:
+                            type: integer
+                          to:
+                            type: integer
+                          numberOfWinners:
+                            type: integer
+                          amount:
+                            type: string
+                          token:
+                            type: string
+                          byUsd:
+                            type: boolean
+                enterNowUrl:
+                  type: string
+                chainIds:
+                  type: string
+                rewardChainIds:
+                  type: string
+                eligibleTokens:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      chainId:
+                        type: integer
+                      address:
+                        type: string
+                      symbol:
+                        type: string
+                      name:
+                        type: string
+                      decimals:
+                        type: integer
+                      logoURI:
+                        type: string
+                tradingVolumeRequired:
+                  type: integer
+                numberOfTradesRequired:
+                  type: integer
+                countPointBy:
+                  type: string
+              x-examples:
+                example-1:
+                  name: nhdz_11
+                  startTime: 1660112885
+                  endTime: 1660115295
+                  desktopBanner: a
+                  mobileBanner: b
+                  rules: <p>1</p>
+                  termsAndConditions: <p>2</p>
+                  otherDetails: <p>3</p>
+                  rewardDetails: <p>4</p>
+                  isRewardShown: true
+                  rewardDistribution:
+                    single:
+                      - rank: 1
+                        amount: "5"
+                        token: "0"
+                        byUsd: false
+                    range:
+                      - from: 2
+                        to: 5
+                        amount: "8"
+                        token: "0"
+                        byUsd: false
+                    random:
+                      - from: 6
+                        to: 10
+                        numberOfWinners: 3
+                        amount: "6"
+                        token: "0"
+                        byUsd: false
+                  enterNowUrl: "https://kyberswap.com/swap"
+                  chainIds: "1,56,199"
+                  rewardChainIds: "4"
+                  eligibleTokens:
+                    - chainId: 199
+                      address: "0x18fA72e0EE4C580a129b0CE5bD0694d716C7443E"
+                      symbol: KNC_b
+                      name: Kyber Network Crystal
+                      decimals: 18
+                      logoURI: "https://raw.githubusercontent.com/KyberNetwork/dmm-interface/main/src/assets/images/KNC.svg"
+                  tradingVolumeRequired: 0
+                  numberOfTradesRequired: 0
+                  countPointBy: Trading Volume
+            examples:
+              example-1:
+                value:
+                  name: nhdz_11
+                  startTime: 1660112885
+                  endTime: 1660115295
+                  desktopBanner: a
+                  mobileBanner: b
+                  rules: <p>1</p>
+                  termsAndConditions: <p>2</p>
+                  otherDetails: <p>3</p>
+                  rewardDetails: <p>4</p>
+                  isRewardShown: true
+                  rewardDistribution:
+                    single:
+                      - rank: 1
+                        amount: "5"
+                        token: "0"
+                        byUsd: false
+                    range:
+                      - from: 2
+                        to: 5
+                        amount: "8"
+                        token: "0"
+                        byUsd: false
+                    random:
+                      - from: 6
+                        to: 10
+                        numberOfWinners: 3
+                        amount: "6"
+                        token: "0"
+                        byUsd: false
+                  enterNowUrl: "https://kyberswap.com/swap"
+                  chainIds: "1,56,199"
+                  rewardChainIds: "4"
+                  eligibleTokens:
+                    - chainId: 199
+                      address: "0x18fA72e0EE4C580a129b0CE5bD0694d716C7443E"
+                      symbol: KNC_b
+                      name: Kyber Network Crystal
+                      decimals: 18
+                      logoURI: "https://raw.githubusercontent.com/KyberNetwork/dmm-interface/main/src/assets/images/KNC.svg"
+                  tradingVolumeRequired: 0
+                  numberOfTradesRequired: 0
+                  countPointBy: Trading Volume
+    delete:
+      summary: Delete a campaign
+      operationId: delete-campaigns-id
+      responses:
+        "200":
+          description: OK
+  "/campaigns/{id}/leaderboard/finalize":
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+    post:
+      summary: Finalize leaderboard
+      operationId: post-campaigns-id-leaderboard-finalize
+      responses:
+        "200":
+          description: OK
+  "/campaigns/{id}/distribute-rewards":
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+    post:
+      summary: Distribute rewards
+      operationId: post-campaigns-id-distribute-rewards
+      responses:
+        "200":
+          description: OK
+components:
+  schemas: {}
+  securitySchemes: {}
