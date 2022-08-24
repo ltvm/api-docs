@@ -1,0 +1,518 @@
+openapi: 3.0.0
+info:
+  title: Kyber Swap Type and Swap APIs
+  version: '1.0'
+  description: Kyber Swap Type and Swap APIs
+  contact:
+    name: Quang-Le
+    url: 'https://kyberswap.com'
+    email: quang.le@kyber.network
+  license:
+    name: Apache 2.0
+    url: 'https://www.apache.org/licenses/LICENSE-2.0.html'
+servers:
+  - url: 'https://tns.kyberengineering.io'
+paths:
+  /api/v1/suggested-pairs:
+    get:
+      summary: Get suggested pairs by user text input
+      tags:
+        - Suggested pairs
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    description: Always 0
+                  message:
+                    type: string
+                    description: Always "Succeeded"
+                  data:
+                    type: object
+                    required:
+                      - suggestedPairs
+                    properties:
+                      amount:
+                        type: number
+                      favoritePairs:
+                        type: array
+                        description: User's favorite pairs
+                        items:
+                          type: object
+                          properties:
+                            tokenIn:
+                              type: string
+                            tokenInSymbol:
+                              type: string
+                            tokenInImgUrl:
+                              type: string
+                            tokenOut:
+                              type: string
+                            tokenOutSymbol:
+                              type: string
+                            tokenOutImgUrl:
+                              type: string
+                          required:
+                            - tokenIn
+                            - tokenInSymbol
+                            - tokenInImgUrl
+                            - tokenOut
+                            - tokenOutSymbol
+                            - tokenOutImgUrl
+                      suggestedPairs:
+                        type: array
+                        description: Suggested pairs based on user text input
+                        items:
+                          type: object
+                          description: Pair information
+                          properties:
+                            tokenIn:
+                              type: string
+                            tokenInSymbol:
+                              type: string
+                            tokenInImgUrl:
+                              type: string
+                            tokenOut:
+                              type: string
+                            tokenOutSymbol:
+                              type: string
+                            tokenOutImgUrl:
+                              type: string
+                          required:
+                            - tokenIn
+                            - tokenInSymbol
+                            - tokenInImgUrl
+                            - tokenOut
+                            - tokenOutSymbol
+                            - tokenOutImgUrl
+                required:
+                  - code
+                  - message
+                  - data
+              examples:
+                User type "usdt th":
+                  value:
+                    code: 0
+                    message: Succeeded
+                    data:
+                      favoritePairs:
+                        - tokenIn: '0xdAC17F958D2ee523a2206206994597C13D831ec7'
+                          tokenInSymbol: USDT
+                          tokenInImgUrl: 'https://images.com/usdt'
+                          tokenOut: '0xdAC17F958D2ee523a2206206994597C13D831e11'
+                          tokenOutSymbol: THECA
+                          tokenOutImgUrl: 'https://images.com/theca'
+                      suggestedPairs:
+                        - tokenIn: '0xdAC17F958D2ee523a2206206994597C13D831ec7'
+                          tokenInSymbol: USDT
+                          tokenInImgUrl: 'https://images.com/usdt'
+                          tokenOut: '0xdAC17F958D2ee523a2206206994597C13D831e11'
+                          tokenOutSymbol: THECA
+                          tokenOutImgUrl: 'https://images.com/theca'
+                        - tokenIn: '0xdAC17F958D2ee523a2206206994597C13D831ec7'
+                          tokenInSymbol: USDT
+                          tokenInImgUrl: 'https://images.com/usdt'
+                          tokenOut: '0xdAC17F958D2ee523a2206206994597C13D831e22'
+                          tokenOutSymbol: THUGZ
+                          tokenOutImgUrl: 'https://images.com/thugz'
+                        - tokenIn: '0xdAC17F958D2ee523a2206206994597C13D831ec7'
+                          tokenInSymbol: USDT
+                          tokenInImgUrl: 'https://images.com/usdt'
+                          tokenOut: '0xdAC17F958D2ee523a2206206994597C13D831e33'
+                          tokenOutSymbol: THC
+                          tokenOutImgUrl: 'https://images.com/thc'
+                        - tokenIn: '0xdAC17F958D2ee523a2206206994597C13D831ec7'
+                          tokenInSymbol: USDT
+                          tokenInImgUrl: 'https://images.com/usdt'
+                          tokenOut: '0xdAC17F958D2ee523a2206206994597C13D831e44'
+                          tokenOutSymbol: ETH
+                          tokenOutImgUrl: 'https://images.com/eth'
+                        - tokenIn: '0xdAC17F958D2ee523a2206206994597C13D831ec7'
+                          tokenInSymbol: USDT
+                          tokenInImgUrl: 'https://images.com/usdt'
+                          tokenOut: '0xdAC17F958D2ee523a2206206994597C13D831e55'
+                          tokenOutSymbol: ETHBULL
+                          tokenOutImgUrl: 'https://images.com/ethbull'
+        '400':
+          description: |-
+            Bad Request
+            - Missing required fields.
+            - ChainId is invalid.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    description: Error code
+                    type: integer
+                  message:
+                    type: string
+                    description: Human readable message
+                  errorEntities:
+                    type: array
+                    items:
+                      type: string
+                  details:
+                    type: array
+                    items: {}
+                required:
+                  - code
+                  - message
+                  - errorEntities
+                  - details
+              examples:
+                example-1:
+                  value:
+                    code: 4000
+                    message: Missing required fields
+                    errorEntities:
+                      - chainId
+                    details: []
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    description: Error code
+                    type: integer
+                  message:
+                    type: string
+                    description: Human readable message
+                  errorEntities:
+                    type: array
+                    items:
+                      type: string
+                  details:
+                    type: array
+                    items: {}
+                required:
+                  - code
+                  - message
+                  - errorEntities
+                  - details
+              examples:
+                Internal server error:
+                  value:
+                    code: 5000
+                    message: Internal Server Error
+                    errorEntities: []
+                    details: []
+      operationId: get-suggested-pair
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: query
+          description: User text input
+        - schema:
+            type: string
+          in: query
+          name: wallet
+          description: User wallet
+        - schema:
+            type: string
+          in: query
+          name: chainId
+          description: Blockchain ChainID
+          required: true
+      description: ''
+    parameters: []
+  /api/v1/favorite-pairs:
+    post:
+      summary: Add new favorite trading pair
+      operationId: post-api-favorite
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                wallet:
+                  type: string
+                chainId:
+                  type: string
+                tokenIn:
+                  type: string
+                tokenOut:
+                  type: string
+              required:
+                - wallet
+                - chainId
+                - tokenIn
+                - tokenOut
+            examples:
+              example-1:
+                value:
+                  wallet: '0x8ffC2FFF9fBFdD1862F83BeE340409F72Ab02D3a'
+                  chainId: '1'
+                  tokenIn: '0xdeFA4e8a7bcBA345F687a2f1456F5Edd9CE97202'
+                  tokenOut: '0xdac17f958d2ee523a2206206994597c13d831ec7'
+        description: ''
+      description: ''
+      x-internal: false
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    description: Always 0
+                  message:
+                    type: string
+                    description: Always "Succeeded"
+                  data:
+                    type: object
+                    nullable: true
+                required:
+                  - code
+                  - message
+                  - data
+              examples:
+                example-1:
+                  value:
+                    code: 0
+                    message: Succeeded
+                    data: null
+        '400':
+          description: |-
+            Bad Request
+            - Missing required fields.
+            - ChainId is invalid.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    description: Error code
+                    type: integer
+                  message:
+                    type: string
+                    description: Human readable message
+                  errorEntities:
+                    type: array
+                    items:
+                      type: string
+                  details:
+                    type: array
+                    items: {}
+                required:
+                  - code
+                  - message
+                  - errorEntities
+                  - details
+              examples:
+                'Missing required fields: wallet':
+                  value:
+                    code: 4000
+                    message: 'Missing required fields: wallet'
+                    errorEntities:
+                      - wallet
+                    details: []
+        '404':
+          description: |-
+            Not Found
+            - tokenIn, tokenOut not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                  message:
+                    type: string
+                  errorEntities:
+                    type: array
+                    items:
+                      type: string
+                  details:
+                    type: array
+                    items: {}
+                required:
+                  - code
+                  - message
+                  - errorEntities
+                  - details
+              examples:
+                example-1:
+                  value:
+                    code: 4040
+                    message: The requested resource is not found
+                    errorEntities:
+                      - tokenIn
+                    details: []
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    description: Error code
+                    type: integer
+                  message:
+                    type: string
+                    description: Human readable message
+                  errorEntities:
+                    type: array
+                    items:
+                      type: string
+                  details:
+                    type: array
+                    items: {}
+                required:
+                  - code
+                  - message
+                  - errorEntities
+                  - details
+              examples:
+                example-1:
+                  value:
+                    code: 5000
+                    message: Internal Server Error
+                    errorEntities: []
+                    details: []
+      tags:
+        - Favorite pairs
+    delete:
+      summary: Remove favorited trading pair
+      operationId: delete-api-favorite
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                wallet:
+                  type: string
+                chainId:
+                  type: string
+                tokenIn:
+                  type: string
+                tokenOut:
+                  type: string
+              required:
+                - wallet
+                - chainId
+                - tokenIn
+                - tokenOut
+            examples:
+              example-1:
+                value:
+                  wallet: '0x8ffC2FFF9fBFdD1862F83BeE340409F72Ab02D3a'
+                  chainId: '1'
+                  tokenIn: '0xdeFA4e8a7bcBA345F687a2f1456F5Edd9CE97202'
+                  tokenOut: '0xdac17f958d2ee523a2206206994597c13d831ec7'
+        description: ''
+      description: ''
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                  message:
+                    type: string
+                  data:
+                    type: object
+                    nullable: true
+                required:
+                  - code
+                  - message
+                  - data
+              examples:
+                example-1:
+                  value:
+                    code: 0
+                    message: Succeeded
+                    data: null
+        '400':
+          description: |-
+            Bad Request
+            - Missing required fields.
+            - ChainId is invalid.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    description: Error code
+                    type: integer
+                  message:
+                    type: string
+                    description: Human readable message
+                  errorEntities:
+                    type: array
+                    items:
+                      type: string
+                  details:
+                    type: array
+                    items: {}
+                required:
+                  - code
+                  - message
+                  - errorEntities
+                  - details
+              examples:
+                example-1:
+                  value:
+                    code: 4000
+                    message: 'Missing required fields: wallet'
+                    errorEntities:
+                      - wallet
+                    details: []
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                type: object
+                description: Error code
+                properties:
+                  code:
+                    description: Human readable message
+                    type: integer
+                  message:
+                    type: string
+                  errorEntities:
+                    type: array
+                    items:
+                      type: string
+                  details:
+                    type: array
+                    items: {}
+                required:
+                  - code
+                  - message
+                  - errorEntities
+                  - details
+              examples:
+                example-1:
+                  value:
+                    code: 5000
+                    message: Internal Server Error
+                    errorEntities: []
+                    details: []
+      tags:
+        - Favorite pairs
+    parameters: []
