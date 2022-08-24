@@ -55,6 +55,11 @@ const config = {
             route: '/api/referral',
           },
           {
+            id: 'typeswap-api',
+            spec: 'openapi/typeswap/openapi.yaml',
+            route: '/api/typeswap',
+          },
+          {
             id: 'reward-api',
             spec: 'openapi/reward/openapi.yaml',
             route: '/api/reward',
