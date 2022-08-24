@@ -53,6 +53,11 @@ const config = {
             id: 'referral-api',
             spec: 'openapi/referral/openapi.yaml',
             route: '/api/referral',
+          },
+          {
+            id: 'reward-api',
+            spec: 'openapi/reward/openapi.yaml',
+            route: '/api/reward',
           }
         ],
       },

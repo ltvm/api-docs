@@ -1,0 +1,636 @@
+openapi: 3.0.0
+info:
+  title: Kyber Swap Reward Service APIs
+  description: |
+    Kyber Swap Reward Service APIs
+  license:
+    name: Apache 2.0
+    url: "https://www.apache.org/licenses/LICENSE-2.0.html"
+  version: "1.0"
+  contact:
+    name: Quang-Le
+    email: quang.le@kyber.network
+    url: "https://kyberswap.com"
+servers:
+  - url: "https://rewards.dev.kyberengineering.io"
+    description: dev
+paths:
+  /api/v1/clients:
+    post:
+      summary: Add/update client
+      operationId: add-update-client
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                  message:
+                    type: string
+                  data:
+                    type: object
+                    properties:
+                      apiKey:
+                        type: string
+                      clientCode:
+                        type: string
+                      ipnEndpoint:
+                        type: string
+                    required:
+                      - apiKey
+                      - clientCode
+                      - ipnEndpoint
+                required:
+                  - code
+                  - message
+                  - data
+              examples:
+                example-1:
+                  value:
+                    code: 0
+                    message: string
+                    data:
+                      apiKey: string
+                      clientCode: string
+                      ipnEndpoint: string
+        "400":
+          description: |-
+            Bad Request
+            - Missing required fields
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                  message:
+                    type: string
+                required:
+                  - code
+                  - message
+              examples:
+                example-1:
+                  value:
+                    code: string
+                    message: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                clientCode:
+                  type: string
+                ipnEndpoint:
+                  type: string
+              required:
+                - clientCode
+                - ipnEndpoint
+            examples:
+              example-1:
+                value:
+                  clientCode: string
+                  ipnEndpoint: string
+      description: Add new client or update ipn endpoint for existing client
+      tags:
+        - Add and update client
+  /api/v1/rewards:
+    post:
+      summary: Create rewards
+      operationId: create-rewards
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                  message:
+                    type: string
+                required:
+                  - code
+                  - message
+              examples:
+                example-1:
+                  value:
+                    code: string
+                    message: string
+        "400":
+          description: |-
+            Bad Request
+            - Missing required fields
+            - Reward for users has no ref param
+            - Invalid API key
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                  message:
+                    type: string
+                required:
+                  - code
+                  - message
+              examples:
+                example-1:
+                  value:
+                    code: string
+                    message: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                checksum:
+                  type: string
+                rewards:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      user:
+                        type: string
+                      ref:
+                        type: string
+                      token:
+                        type: string
+                      amount:
+                        type: string
+                      chainId:
+                        type: string
+                    required:
+                      - user
+                      - ref
+                      - token
+                      - amount
+                      - chainId
+              required:
+                - checksum
+                - rewards
+            examples:
+              example-1:
+                value:
+                  checksum: string
+                  rewards:
+                    - user: string
+                      ref: string
+                      token: string
+                      amount: string
+                      chainId: string
+        description: ""
+      tags:
+        - Create rewards
+    put:
+      summary: Update rewards
+      operationId: update-rewards
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                  message:
+                    type: string
+                required:
+                  - code
+                  - message
+              examples:
+                example-1:
+                  value:
+                    code: string
+                    message: string
+        "400":
+          description: |-
+            Bad Request
+            - Missing required fields
+            - Old ref not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                  message:
+                    type: string
+                required:
+                  - code
+                  - message
+              examples:
+                example-1:
+                  value:
+                    code: string
+                    message: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user:
+                  type: string
+                oldRef:
+                  type: string
+                newRef:
+                  type: string
+                state:
+                  type: string
+              required:
+                - oldRef
+            examples:
+              example-1:
+                value:
+                  user: string
+                  oldRef: string
+                  newRef: string
+                  state: string
+      tags:
+        - Update rewards
+  /api/v1/rewards/notify:
+    post:
+      summary: Notify client
+      operationId: notify-client
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                  message:
+                    type: string
+                required:
+                  - code
+                  - message
+              examples:
+                example-1:
+                  value:
+                    code: string
+                    message: string
+        "400":
+          description: |-
+            Bad Request
+            - Missing required fields
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                  message:
+                    type: string
+                required:
+                  - code
+                  - message
+              examples:
+                example-1:
+                  value:
+                    code: string
+                    message: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                refs:
+                  type: array
+                  items:
+                    type: string
+                clientCode:
+                  type: string
+              required:
+                - refs
+                - clientCode
+            examples:
+              example-1:
+                value:
+                  refs:
+                    - string
+                  clientCode: string
+      tags:
+        - Rewards notify
+  /api/v1/rewards/claim:
+    post:
+      summary: Claim rewards
+      operationId: claim-rewards
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                  message:
+                    type: string
+                  data:
+                    type: object
+                    properties:
+                      EncodedData:
+                        type: string
+                      ContractAddress:
+                        type: string
+                    required:
+                      - EncodedData
+                      - ContractAddress
+                required:
+                  - code
+                  - message
+                  - data
+              examples:
+                example-1:
+                  value:
+                    code: string
+                    message: string
+                    data:
+                      EncodedData: string
+                      ContractAddress: string
+        "400":
+          description: |-
+            Bad Request
+            - Missing required fields
+            - Chain is not supported
+            - Not found reward
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                  message:
+                    type: string
+                required:
+                  - code
+                  - message
+              examples:
+                example-1:
+                  value:
+                    code: string
+                    message: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                wallet:
+                  type: string
+                chainId:
+                  type: string
+                ref:
+                  type: string
+                clientCode:
+                  type: string
+              required:
+                - wallet
+                - chainId
+                - clientCode
+            examples:
+              example-1:
+                value:
+                  wallet: string
+                  chainId: string
+                  ref: string
+                  clientCode: string
+      tags:
+        - Rewards claim
+  /api/v1/faucets:
+    get:
+      summary: Get faucets
+      operationId: get-api-v1-faucets
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                  message:
+                    type: string
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        programId:
+                          type: string
+                        programName:
+                          type: string
+                        maxClaimTime:
+                          type: string
+                        amount:
+                          type: string
+                        token:
+                          type: string
+                        rewards:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              ID:
+                                type: string
+                              CreatedAt:
+                                type: string
+                              UpdatedAt:
+                                type: string
+                              DeletedAt:
+                                type: string
+                              ProgramId:
+                                type: string
+                              Wallet:
+                                type: string
+                              ProgressState:
+                                type: string
+                              DistributedType:
+                                type: string
+                              DistributedId:
+                                type: string
+                            required:
+                              - ID
+                              - CreatedAt
+                              - UpdatedAt
+                              - DeletedAt
+                              - ProgramId
+                              - Wallet
+                              - ProgressState
+                              - DistributedType
+                              - DistributedId
+                      required:
+                        - programId
+                        - programName
+                        - maxClaimTime
+                        - amount
+                        - token
+                        - rewards
+                required:
+                  - code
+                  - message
+                  - data
+              examples:
+                example-1:
+                  value:
+                    code: string
+                    message: string
+                    data:
+                      - programId: string
+                        programName: string
+                        maxClaimTime: string
+                        amount: string
+                        token: string
+                        rewards:
+                          - ID: string
+                            CreatedAt: string
+                            UpdatedAt: string
+                            DeletedAt: string
+                            ProgramId: string
+                            Wallet: string
+                            ProgressState: string
+                            DistributedType: string
+                            DistributedId: string
+        "400":
+          description: |-
+            Bad Request
+            - Missing required fields
+            - Invalid wallet address
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                  message:
+                    type: string
+                required:
+                  - code
+                  - message
+              examples:
+                example-1:
+                  value:
+                    code: string
+                    message: string
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: wallet
+          required: true
+        - schema:
+            type: string
+          in: query
+          name: chainId
+          required: true
+      tags:
+        - Get faucets
+  /api/v1/faucets/claim:
+    post:
+      summary: Claim faucets
+      operationId: post-api-v1-faucets-claim
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                  message:
+                    type: string
+                  data:
+                    type: object
+                    properties:
+                      rewardId:
+                        type: string
+                      amount:
+                        type: string
+                      token:
+                        type: string
+                    required:
+                      - rewardId
+                      - amount
+                      - token
+                required:
+                  - code
+                  - message
+                  - data
+              examples:
+                example-1:
+                  value:
+                    code: string
+                    message: string
+                    data:
+                      rewardId: string
+                      amount: string
+                      token: string
+        "400":
+          description: |-
+            Bad Request
+            - Missing required fields
+            - Invalid wallet address
+            - Program not found
+            - Program not active
+            - Reach limit claim time
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                  message:
+                    type: string
+                required:
+                  - code
+                  - message
+              examples:
+                example-1:
+                  value:
+                    code: string
+                    message: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                wallet:
+                  type: string
+                program:
+                  type: integer
+              required:
+                - wallet
+            examples:
+              example-1:
+                value:
+                  wallet: string
+                  program: 0
+      tags:
+        - Faucets claim
