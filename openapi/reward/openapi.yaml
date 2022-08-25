@@ -12,8 +12,16 @@ info:
     email: quang.le@kyber.network
     url: "https://kyberswap.com"
 servers:
+  - url: "https://rewards-admin.kyberengineering.io"
+    description: reward-admin prod
+  - url: "https://reward-admin.stg.kyberengineering.io"
+    description: reward-admin stg
+  - url: "https://reward.stg.kyberengineering.io"
+    description: reward-public stg
+  - url: "https://reward-admin.dev.kyberengineering.io"
+    description: reward-admin dev
   - url: "https://rewards.dev.kyberengineering.io"
-    description: dev
+    description: reward-public dev
 paths:
   /api/v1/clients:
     post:
