@@ -1,0 +1,18 @@
+type: object
+description: extra fee should be charged when executing swap, can be customed by client
+properties:
+  feeAmount:
+    description: amount of fee
+    type: string
+    format: '*big.Int'
+  chargeFeeBy:
+    type: string
+    enum:
+      - currency_in
+      - currency_out
+  isInBps:
+    type: boolean
+  feeReceiver:
+    description:
+    type: string
+    format: ethAddress

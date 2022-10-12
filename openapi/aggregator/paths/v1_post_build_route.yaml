@@ -1,0 +1,62 @@
+post:
+  summary: Build Route
+  operationId: build-route
+  requestBody:
+    required: true
+    content:
+      'application/json':
+        schema:
+          $ref: ../components/requests/build_route.yaml
+  responses:
+    200:
+      description: OK
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              code:
+                type: string
+              message:
+                type: string
+              data:
+                type: object
+                properties:
+                  data:
+                    type: string
+                  routerAddress:
+                    type: string
+                    format: ethAddress
+    400:
+      description: Bad Request
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              code:
+                type: string
+              message:
+                type: string
+    422:
+      description: Can not verify signature
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              code:
+                type: string
+              message:
+                type: string
+    500:
+      description: Internal Server Error
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              code:
+                type: string
+              message:
+                type: string
