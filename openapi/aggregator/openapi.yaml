@@ -14,6 +14,10 @@ info:
 servers:
   - url: 'https://aggregator-api.kyberswap.com'
 paths:
+  '/{chain}/api/v1/route/build':
+    parameters:
+      - $ref: components/parameters/chain.yaml
+    $ref: paths/v1_post_build_route.yaml
   '/{chain}/route/encode':
     parameters:
       - $ref: components/parameters/chain.yaml

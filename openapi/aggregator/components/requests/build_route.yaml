@@ -1,0 +1,25 @@
+type: object
+required:
+  - route
+  - signature
+properties:
+  route:
+    $ref: ../schemas/route_summary.yaml
+  signature:
+    type: string
+  deadline:
+    type: integer
+    format: unix timestamp
+  slippageTolerance:
+    type: integer
+    format: int64
+    minimum: 0
+    maximum: 2000
+  to:
+    description: user wallet address
+    type: string
+    format: ethAddress
+  referral:
+    type: string
+  source:
+    type: string

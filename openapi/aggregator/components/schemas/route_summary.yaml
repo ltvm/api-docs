@@ -1,0 +1,106 @@
+type: object
+required:
+  - tokenIn
+  - tokenOut
+  - amountIn
+  - amountOut
+  - gas
+  - amountInUsd
+  - amountOutUsd
+  - gasUsd
+  - route
+properties:
+  tokenIn:
+    description: address of token swap from
+    type: string
+    format: ethAddress
+  tokenOut:
+    description: address of token swap to
+    type: string
+    format: ethAddress
+  amountIn:
+    description: amount of swapping token
+    type: string
+    format: '*big.Int'
+  amountOut:
+    description: amount of receiving token
+    type: string
+    format: '*big.Int'
+  gas:
+    description: gas consummed for swapping
+    type: integer
+    format: int64
+  amountInUsd:
+    description: amount of swapping token in USD
+    type: number
+    format: float64
+  amountOutUsd:
+    description: amount of receiving token in USD
+    type: number
+    format: float64
+  gasUsd:
+    description: amount of gas in USD
+    type: number
+    format: float64
+  gasPrice:
+    description: price of gas (in GWei)
+    type: string
+    format: '*big.Int'
+  extraFee:
+    $ref: extra_fee.yaml
+  route:
+    type: array
+    items:
+      description: path
+      type: array
+      items:
+        description: swap
+        type: object
+        required:
+          - pool
+          - tokenIn
+          - tokenOut
+          - limitReturnAmount
+          - swapAmount
+          - amountOut
+          - exchange
+          - poolLength
+          - poolType
+          - extra
+        properties:
+          pool:
+            description: address of the pool for swapping
+            type: string
+            format: ethAddress
+          tokenIn:
+            description: address of token swap from
+            type: string
+            format: ethAddress
+          tokenOut:
+            description: address of token swap to
+            type: string
+            format: ethAddress
+          limitReturnAmount:
+            description:
+            type: string
+            format: '*big.Int'
+          swapAmount:
+            description: amount of TokenIn to swap
+            type: string
+            format: '*big.Int'
+          amountOut:
+            description: amount of TokenOut received
+            type: string
+            format: '*big.Int'
+          exchange:
+            description: name of exchange
+            type: string
+          poolLength:
+            description: number of tokens inside the pools
+            type: integer
+          poolType:
+            description: type of the pool
+            type: string
+          extra:
+            description: metadata of the pool
+            type: string
