@@ -1,0 +1,105 @@
+get:
+  summary: Get Route
+  operationId: get-route
+  parameters:
+    - name: tokenIn
+      in: query
+      required: true
+      schema:
+        type: string
+        format: ethAddress
+    - name: tokenOut
+      in: query
+      required: true
+      schema:
+        type: string
+        format: ethAddress
+    - name: amountIn
+      in: query
+      required: true
+      schema:
+        type: string
+        format: '*big.Int'
+    - name: saveGas
+      in: query
+      schema:
+        type: boolean
+    - name: dexes
+      in: query
+      schema:
+        type: string
+    - name: gasInclude
+      in: query
+      schema:
+        type: boolean
+    - name: gasPrice
+      in: query
+      schema:
+        type: string
+        format: '*big.Int'
+    - name: feeAmount
+      in: query
+      schema:
+        type: string
+        format: '*big.Int'
+    - name: chargeFeeBy
+      in: query
+      schema:
+        type: string
+        enum:
+          - currency_in
+          - currency_out
+    - name: isInBps
+      in: query
+      schema:
+        type: boolean
+    - name: feeReceiver
+      in: query
+      schema:
+        type: string
+        format: ethAddress
+    - $ref: ../components/parameters/debug.yaml
+  responses:
+    200:
+      description: OK
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              code:
+                type: string
+              message:
+                type: string
+              data:
+                type: object
+                properties:
+                  route:
+                    $ref: ../components/schemas/route_summary.yaml
+                  signature:
+                    type: string
+                  routerAddress:
+                    type: string
+                    format: ethAddress
+    400:
+      description: Bad Request
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              code:
+                type: string
+              message:
+                type: string
+    500:
+      description: Internal Server Error
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              code:
+                type: string
+              message:
+                type: string
